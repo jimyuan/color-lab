@@ -2,8 +2,8 @@
 
 .child-view {
   @include absolute(top 0 left 0 right 0);
-  padding: $spacer * 5 20px $spacer * 4;
-  transition: transform .5s cubic-bezier(0.2, 0.6, 0.6, 1.5);
+
+  transition: transform .3s cubic-bezier(0.2, 0.6, 0.6, 1.5);
 }
 
 .slide-left-enter,

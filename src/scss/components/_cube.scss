@@ -1,0 +1,70 @@
+@charset 'utf-8';
+
+.cube {
+  @include size($cube-width);
+
+  margin: $cube-width auto;
+  transform-style: preserve-3d;
+  animation: r3d 11s linear infinite;
+
+  > div {
+    @include absolute(top 0 left 0 right 0 bottom 0);
+
+    border: 1px solid #ddd;
+    backface-visibility: visible;
+    animation: infinite alternate;
+
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i}) {
+        background-color: hsl($i * 60 - 60, 100%, 50%);
+        animation-name: colorful, vibrate;
+        animation-duration: 7s, 3s;
+      }
+    }
+  }
+}
+
+/* Define each face based on direction */
+.front {
+  transform: translateZ($cube-width / 2);
+}
+.back {
+  transform: rotateY(180deg) translateZ($cube-width / 2);
+}
+.right {
+  transform: rotateY(90deg) translateZ($cube-width / 2);
+}
+.left {
+  transform: rotateY(-90deg) translateZ($cube-width / 2);
+}
+.top {
+  transform: rotateX(90deg) translateZ($cube-width / 2);
+}
+.bottom {
+  transform: rotateX(-90deg) translateZ($cube-width / 2);
+}
+
+@keyframes r3d {
+  from {
+    transform: rotateX(30deg) rotateY(0) rotateZ(30deg);
+  }
+  to {
+    transform: rotateX(390deg) rotateY(360deg) rotateZ(30deg);
+  }
+}
+
+@keyframes vibrate {
+  from {
+    opacity: 0.9;
+  }
+  to {
+    opacity: 0.5;
+  }
+}
+
+@keyframes colorful {
+  to {
+    background-color: hsl(0, 0%, 90%);
+    border-color: #ccc;
+  }
+}

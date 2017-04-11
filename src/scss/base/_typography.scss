@@ -5,3 +5,65 @@
     margin: 0;
   }
 }
+
+.center {
+  text-align: center;
+}
+
+
+.mint-tab-item-icon .iconfont::before {
+  font-size: 26px;
+}
+
+.nav-bottom .iconfont,
+.nav-bottom span {
+  display: block;
+}
+
+.hex-section {
+  background: #fff;
+
+  .picker {
+    width: 100%;
+  }
+
+  .picker-items {
+    justify-content: space-around;
+  }
+}
+
+.picker-zone {
+  background: #ddd;
+  margin-top: 1rem;
+
+  .mint-cell-value {
+    font-family: monospace;
+    color: inherit;
+  }
+
+  .mint-cell-title {
+    font-weight: bold;
+    color: inherit;
+  }
+}
+.picker-item {
+  color: #ddd;
+  font-family: monospace;
+}
+
+.color-select .mint-cell-value,
+.color-select .mt-range {
+  width: 90%;
+  justify-content: flex-end;
+}
+
+.color-mod {
+  .mint-tab-item-label {
+    font-size: 1.2em;
+    line-height: 1.2;
+  }
+
+  .is-selected {
+    background: #eee;
+  }
+}

@@ -11,7 +11,11 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     user: {},
-    token: null
+    token: null,
+    navinfo: {
+      title: '',
+      path: ''
+    }
   },
   mutations: {
     [types.LOGIN]: (state, data) => {
@@ -27,6 +31,9 @@ export default new Vuex.Store({
     [types.USER]: (state, data) => {
       ls.set('user', data, { exp })
       state.user = data
+    },
+    [types.NAVINFO]: (state, data) => {
+      state.navinfo = {...state.navinfo, ...data}
     }
   }
 })

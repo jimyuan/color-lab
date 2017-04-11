@@ -16,12 +16,14 @@ const router = new VueRouter({
     path: '/home',
     component: resolve => require(['PAGES/Home'], resolve)
   }, {
-    path: '/list',
-    meta: { auth: true },
-    component: resolve => require(['PAGES/List'], resolve)
+    path: '/convert',
+    component: resolve => require(['PAGES/Convert'], resolve)
   }, {
-    path: '/login',
-    component: resolve => require(['PAGES/Login'], resolve)
+    path: '/safety',
+    component: resolve => require(['PAGES/Safety'], resolve)
+  }, {
+    path: '/named',
+    component: resolve => require(['PAGES/Named'], resolve)
   }]
 })
 

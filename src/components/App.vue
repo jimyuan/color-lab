@@ -1,19 +1,14 @@
 <template>
-  <div id="app">
-    <Userbar></Userbar>
-    <Navbar></Navbar>
+  <main>
     <transition :name="transitionName">
       <router-view class="child-view"></router-view>
     </transition>
-    <Footinfo></Footinfo>
-  </div>
+    <Navbar></Navbar>
+  </main>
 </template>
 
 <script>
-import Userbar from './Userbar'
-import Navbar from './Navbar'
-import Footinfo from './Footer'
-
+import Navbar from 'COMPONENTS/Navbar'
 export default {
   data () {
     return {
@@ -21,16 +16,18 @@ export default {
       transitionName: 'fade'
     }
   },
+
   watch: {
-    '$route' (to, from) {
+    '$route' (to) {
+      const path = to.path
       if (this.transitionName !== 'fade') {
-        const toDepth = to.path.split('/').length
-        const fromDepth = from.path.split('/').length
-        this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
+        this.transitionName = path === '/home' ? 'slide-right' : 'slide-left'
       }
+      this.$store.commit('navinfo', { path })
     }
   },
-  components: { Userbar, Navbar, Footinfo }
+
+  components: { Navbar }
 }
 </script>
 
