@@ -1,6 +1,5 @@
 <template>
 <div>
-  <my-header></my-header>
   <mt-navbar v-model="selected" class="color-mod">
     <mt-tab-item id="hex">HEX</mt-tab-item>
     <mt-tab-item id="rgb">RGB</mt-tab-item>
@@ -27,6 +26,8 @@
       </mt-cell>
     </mt-tab-container-item>
   </mt-tab-container>
+  <!-- 当前颜色块 -->
+  <div class="result-block" v-text="formatColor" :style="{backgroundColor: formatColor, color: hslVal[2] &gt; 70 ? '#000' : '#fff' }"></div>
   <section class="picker-zone">
     <mt-cell :title="m.toUpperCase()" :value="convert(m)" v-for="m of mod" :key="m"></mt-cell>
   </section>
@@ -34,7 +35,6 @@
 </template>
 
 <script>
-import MyHeader from 'COMPONENTS/MyHeader'
 import range from 'range-function'
 import cvt from 'color-convert'
 
@@ -58,22 +58,48 @@ export default {
   },
 
   computed: {
-    // 当前色彩空间所选择的颜色，用 HSL 表示
+    // 当前色彩空间所选择的颜色值
     color () {
-      let _color = ''
+      let color = ''
       switch (this.selected) {
         case 'hex':
-          _color = this.HEX
+          // eg: 'AA55CC'
+          color = this.HEX
           break
         case 'rgb':
-          _color = Object.values(this.RGB)
+          // eg: [128, 128, 128] or [0, 100, 50]
+          color = Object.values(this.RGB)
           break
         case 'hsl':
-          _color = Object.values(this.HSL)
+          // eg: [0, 100, 50]
+          color = Object.values(this.HSL)
           break
         default:
       }
-      return _color
+      return color
+    },
+    // 当前色彩空间所选格式值（格式化形式）
+    formatColor () {
+      let color = this.color
+      switch (this.selected) {
+        case 'hex':
+          color = `#${color}`
+          break
+        case 'rgb':
+          color = `rgb(${color[0]}, ${color[1]}, ${color[2]})`
+          break
+        case 'hsl':
+          color = `hsl(${color[0]}, ${color[1]}%, ${color[2]}%)`
+          break
+        default:
+      }
+      return color
+    },
+    // 当前颜色值的 HSL 格式值
+    hslVal () {
+      let hsl = Object.values(this.HSL)
+      const selected = this.selected
+      return selected === 'hsl' ? hsl : cvt[selected].hsl(this.color)
     },
     // 生成 HEX 的 picker 数据
     hexSlots () {
@@ -138,8 +164,6 @@ export default {
     this.$store.commit('navinfo', {
       title: '颜色格式互转'
     })
-  },
-
-  components: { MyHeader }
+  }
 }
 </script>

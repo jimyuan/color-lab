@@ -1,8 +1,9 @@
 @charset 'utf-8';
 
 .child-view {
-  @include absolute(top 0 left 0 right 0);
-
+  @include absolute(top 40px left 0 right 0 bottom 55px);
+  overflow: auto;
+  padding-bottom: 2rem;
   transition: transform .3s cubic-bezier(0.2, 0.6, 0.6, 1.5);
 }
 

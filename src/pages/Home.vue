@@ -1,6 +1,5 @@
 <template>
   <div>
-    <my-header></my-header>
     <div class="cube">
       <div class="front"></div>
       <div class="back"></div>
@@ -14,7 +13,6 @@
 </template>
 
 <script>
-import MyHeader from 'COMPONENTS/MyHeader'
 export default {
   data () {
     return {
@@ -24,8 +22,6 @@ export default {
 
   created () {
     this.$store.commit('navinfo', { title: '色彩实验室' })
-  },
-
-  components: { MyHeader }
+  }
 }
 </script>

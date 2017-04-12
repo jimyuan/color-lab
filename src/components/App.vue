@@ -1,13 +1,15 @@
 <template>
   <main>
+    <my-header></my-header>
     <transition :name="transitionName">
       <router-view class="child-view"></router-view>
     </transition>
-    <Navbar></Navbar>
+    <navbar></navbar>
   </main>
 </template>
 
 <script>
+import MyHeader from 'COMPONENTS/MyHeader'
 import Navbar from 'COMPONENTS/Navbar'
 export default {
   data () {
@@ -27,7 +29,7 @@ export default {
     }
   },
 
-  components: { Navbar }
+  components: { MyHeader, Navbar }
 }
 </script>
 

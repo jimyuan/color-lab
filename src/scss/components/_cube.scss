@@ -3,7 +3,7 @@
 .cube {
   @include size($cube-width);
 
-  margin: $cube-width auto;
+  margin: $cube-width * 2 auto $cube-width;
   transform-style: preserve-3d;
   animation: r3d 11s linear infinite;
 
