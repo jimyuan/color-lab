@@ -11,7 +11,7 @@
     <!-- HEX COLOR -->
     <mt-tab-container-item id="hex" class="hex-section">
       <mt-cell title="#">
-        <mt-picker :slots="hexSlots" :visible-item-count="3" @change="onValuesChange"></mt-picker>
+        <mt-picker :slots="hexSlots" :visible-item-count="4" @change="onValuesChange"></mt-picker>
       </mt-cell>
     </mt-tab-container-item>
     <!-- RGB COLOR -->
@@ -22,14 +22,8 @@
     </mt-tab-container-item>
     <!-- HSL COLOR -->
     <mt-tab-container-item id="hsl">
-      <mt-cell title="H" :label="HSL.h.toString()">
-        <mt-range v-model="HSL.h" :max="359" :bar-height="2"></mt-range>
-      </mt-cell>
-      <mt-cell title="S" :label="HSL.s.toString()">
-        <mt-range v-model="HSL.s" :max="100" :bar-height="2"></mt-range>
-      </mt-cell>
-      <mt-cell title="L" :label="HSL.l.toString()">
-        <mt-range v-model="HSL.l" :max="100" :bar-height="2"></mt-range>
+      <mt-cell v-for="c of 'hsl'.split('')" :key="c" :title="c.toUpperCase()" :label="HSL[c].toString()">
+        <mt-range v-model="HSL[c]" :max="c === 'h' ? 359 : 100" :bar-height="2"></mt-range>
       </mt-cell>
     </mt-tab-container-item>
   </mt-tab-container>
@@ -47,7 +41,7 @@ import cvt from 'color-convert'
 export default {
   data () {
     return {
-      selected: 'rgb',
+      selected: 'hsl',
       HEX: '',
       RGB: {
         r: 128,
@@ -69,13 +63,12 @@ export default {
       let _color = ''
       switch (this.selected) {
         case 'hex':
-          _color = cvt.hex.hsl(this.HEX)
+          _color = this.HEX
           break
         case 'rgb':
-          _color = cvt.rgb.hsl(Object.values(this.RGB))
+          _color = Object.values(this.RGB)
           break
         case 'hsl':
-          // _color = `hsl(${this.HSL.h}, ${this.HSL.s}%, ${this.HSL.l}%)`
           _color = Object.values(this.HSL)
           break
         default:
@@ -84,7 +77,7 @@ export default {
     },
     // 生成 HEX 的 picker 数据
     hexSlots () {
-      const r = [...range(0, 9, 'inclusive'), 'a', 'b', 'c', 'd', 'e', 'f']
+      const r = [...range(0, 9, 'inclusive'), 'A', 'B', 'C', 'D', 'E', 'F']
       return [{
         values: r,
         defaultIndex: 10
@@ -110,26 +103,17 @@ export default {
   methods: {
     convert (toMod) {
       const fromMod = this.selected
-      const RGB = Object.values(this.RGB)
-      const HSL = Object.values(this.HSL)
+      const gotColor = this.color
       let _tmp, _color
+      // 用 convert 库得到转换后的颜色值
       if (fromMod === toMod) {
-        _tmp = (cvt.hsl)[toMod](this.color[0], this.color[1], this.color[2])
+        _tmp = gotColor
       } else {
-        switch (fromMod) {
-          case 'hex':
-            _tmp = cvt[fromMod][toMod](this.HEX)
-            break
-          case 'rgb':
-            _tmp = cvt[fromMod][toMod](RGB[0], RGB[1], RGB[2])
-            break
-          case 'hsl':
-            _tmp = cvt[fromMod][toMod](HSL[0], HSL[1], HSL[2])
-            break
-          default:
-        }
+        _tmp = Array.isArray(gotColor)
+          ? cvt[fromMod][toMod].apply(null, gotColor)
+          : cvt[fromMod][toMod].call(null, gotColor)
       }
-
+      // 格式化为通常的颜色值格式
       switch (toMod) {
         case 'hex':
           _color = `#${_tmp}`
@@ -144,12 +128,13 @@ export default {
       }
       return _color
     },
+
     onValuesChange (picker, values) {
       this.HEX = values.join('')
     }
   },
 
-  created () {
+  mounted () {
     this.$store.commit('navinfo', {
       title: '颜色格式互转'
     })

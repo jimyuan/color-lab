@@ -23,12 +23,20 @@
 .hex-section {
   background: #fff;
 
+  .mint-cell-title {
+    margin-top: 36px;
+  }
+
   .picker {
     width: 100%;
   }
 
   .picker-items {
     justify-content: space-around;
+
+    .picker-center-highlight {
+      margin: 0 !important;
+    }
   }
 }
 
