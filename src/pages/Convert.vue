@@ -27,7 +27,7 @@
     </mt-tab-container-item>
   </mt-tab-container>
   <!-- 当前颜色块 -->
-  <div class="result-block" v-text="formatColor" :style="{backgroundColor: formatColor, color: hslVal[2] &gt; 70 ? '#000' : '#fff' }"></div>
+  <div class="result-block" v-text="formatColor" :style="{backgroundColor: formatColor}"></div>
   <section class="picker-zone">
     <mt-cell :title="m.toUpperCase()" :value="convert(m)" v-for="m of mod" :key="m"></mt-cell>
   </section>

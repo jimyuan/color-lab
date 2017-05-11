@@ -1,0 +1,56 @@
+@charset 'utf-8';
+
+.named-color {
+  padding: 10px;
+  > div {
+    @include size(40%, 4rem);
+    position: relative;
+    box-shadow: 0 0 5px gray;
+
+    &::after, &::before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      text-align: center;
+      line-height: 4rem;
+      font-size: 0.8rem;
+    }
+
+    &::before {
+      $sc: #ccc;
+
+      line-height: (4rem / 2);
+      white-space: pre;
+    }
+
+    &::after {
+      text-align: left;
+      font-family: monospace;
+      transform: translateX(110%);
+      color: gray;
+    }
+  }
+
+  > div + div {
+    margin-top: 1.5rem;
+  }
+
+  $index: 1;
+  @each $eng, $color, $chi in $COLOR-LIST {
+    > div:nth-child(#{$index}) {
+      background: $color;
+      color: text-color($color);
+
+      &::after {
+        content: 'rgb(#{red($color)}, #{green($color)}, #{blue($color)})';
+      }
+
+      &::before {
+        content: $chi '\A #{$color}';
+      }
+    }
+    $index: $index + 1;
+  }
+}

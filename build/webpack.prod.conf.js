@@ -87,6 +87,13 @@ var webpackConfig = merge(baseWebpackConfig, {
       name: 'manifest',
       chunks: ['vendor']
     }),
+    // if a module is imported by 2 times, put it in libs.js
+    new webpack.optimize.CommonsChunkPlugin({
+      async: 'libs',
+      minChunks: (module, count) => (
+        count >= 2
+      )
+    }),
     // copy custom static assets
     new CopyWebpackPlugin([
       {

@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h2>Named Color</h2>
+    <section class="named-color">
+      <div v-for="n in 140"></div>
+    </section>
   </div>
 </template>
 

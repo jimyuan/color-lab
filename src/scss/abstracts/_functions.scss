@@ -44,3 +44,13 @@
   }
   @return map-deep-get($z-layers, $layers...);
 }
+
+// font color adjust
+@function text-color($color) {
+  $light: lightness($color);
+  @if $light > 30% {
+    @return black;
+  } @else {
+    @return white;
+  }
+}
