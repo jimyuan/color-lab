@@ -1,7 +1,7 @@
 <template>
   <div>
     <section class="named-color">
-      <div v-for="n in 140"></div>
+      <div v-for="n in 140" :key="n"></div>
     </section>
   </div>
 </template>

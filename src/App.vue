@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import MyHeader from 'COMPONENTS/MyHeader'
-import Navbar from 'COMPONENTS/Navbar'
+import MyHeader from '@/components/MyHeader'
+import Navbar from '@/components/Navbar'
 export default {
   data () {
     return {
@@ -32,7 +32,3 @@ export default {
   components: { MyHeader, Navbar }
 }
 </script>
-
-<style lang="scss">
-@import "../scss/docs";
-</style>

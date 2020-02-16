@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="color-216">
-      <article class="safe-item" v-for="(item, index) in combHEX" :style="{backgroundColor: '#'+item}">
+      <article class="safe-item" v-for="(item, index) in combHEX" :style="{backgroundColor: '#'+item}" :key="index">
         <div>
           <p>HEX: #{{ item }}</p>
           <P>RGB: {{ combRGB[index] }}</P>
