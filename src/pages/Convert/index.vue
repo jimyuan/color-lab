@@ -14,9 +14,7 @@
     </mt-tab-container-item>
     <!-- RGB COLOR -->
     <mt-tab-container-item id="rgb">
-      <mt-cell v-for="c of mod[1]" :key="c" :title="c.toUpperCase()" :label="RGB[c].toString()">
-        <mt-range v-model="RGB[c]" :max="255" :bar-height="2"></mt-range>
-      </mt-cell>
+      <rgb-mod v-model="RGB"></rgb-mod>
     </mt-tab-container-item>
     <!-- HSL COLOR -->
     <mt-tab-container-item id="hsl">
@@ -34,9 +32,9 @@
 </template>
 
 <script>
-import range from 'range-function'
 import cvt from 'color-convert'
 import HexMod from './HEX'
+import RgbMod from './RGB'
 
 export default {
   name: 'convert',
@@ -59,7 +57,7 @@ export default {
   },
 
   components: {
-    HexMod
+    HexMod, RgbMod
   },
 
   computed: {
@@ -105,29 +103,6 @@ export default {
       let hsl = Object.values(this.HSL)
       const selected = this.selected
       return selected === 'hsl' ? hsl : cvt[selected].hsl(this.color)
-    },
-    // 生成 HEX 的 picker 数据
-    hexSlots () {
-      const r = [...range(0, 9, 'inclusive'), 'A', 'B', 'C', 'D', 'E', 'F']
-      return [{
-        values: r,
-        defaultIndex: 10
-      }, {
-        values: r,
-        defaultIndex: 10
-      }, {
-        values: r,
-        defaultIndex: 5
-      }, {
-        values: r,
-        defaultIndex: 5
-      }, {
-        values: r,
-        defaultIndex: 12
-      }, {
-        values: r,
-        defaultIndex: 12
-      }]
     }
   },
 
