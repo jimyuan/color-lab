@@ -1,9 +1,5 @@
 <template>
-  <mt-header :title="title">
-    <router-link to="/" slot="left" v-if="$route.path !== '/home'">
-      <mt-button icon="back">首页</mt-button>
-    </router-link>
-  </mt-header>
+  <mt-header :title="title"></mt-header>
 </template>
 
 <script>

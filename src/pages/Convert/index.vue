@@ -1,27 +1,26 @@
 <template>
 <div>
   <mt-navbar v-model="selected" class="color-mod">
-    <mt-tab-item id="hex">HEX</mt-tab-item>
-    <mt-tab-item id="rgb">RGB</mt-tab-item>
-    <mt-tab-item id="hsl">HSL</mt-tab-item>
+    <!-- tab list -->
+    <mt-tab-item
+      v-for="m of mod" :key="m"
+      :id="m">{{ m.toUpperCase() }}</mt-tab-item>
   </mt-navbar>
   <!-- tab-container -->
   <mt-tab-container v-model="selected" class="color-select">
     <!-- HEX COLOR -->
     <mt-tab-container-item id="hex" class="hex-section">
-      <mt-cell title="#">
-        <mt-picker :slots="hexSlots" :visible-item-count="4" @change="onValuesChange"></mt-picker>
-      </mt-cell>
+      <hex-mod v-model="HEX"></hex-mod>
     </mt-tab-container-item>
     <!-- RGB COLOR -->
     <mt-tab-container-item id="rgb">
-      <mt-cell v-for="c of 'rgb'.split('')" :key="c" :title="c.toUpperCase()" :label="RGB[c].toString()">
+      <mt-cell v-for="c of mod[1]" :key="c" :title="c.toUpperCase()" :label="RGB[c].toString()">
         <mt-range v-model="RGB[c]" :max="255" :bar-height="2"></mt-range>
       </mt-cell>
     </mt-tab-container-item>
     <!-- HSL COLOR -->
     <mt-tab-container-item id="hsl">
-      <mt-cell v-for="c of 'hsl'.split('')" :key="c" :title="c.toUpperCase()" :label="HSL[c].toString()">
+      <mt-cell v-for="c of mod[2]" :key="c" :title="c.toUpperCase()" :label="HSL[c].toString()">
         <mt-range v-model="HSL[c]" :max="c === 'h' ? 359 : 100" :bar-height="2"></mt-range>
       </mt-cell>
     </mt-tab-container-item>
@@ -37,11 +36,13 @@
 <script>
 import range from 'range-function'
 import cvt from 'color-convert'
+import HexMod from './HEX'
 
 export default {
+  name: 'convert',
   data () {
     return {
-      selected: 'hsl',
+      selected: 'hex',
       HEX: '',
       RGB: {
         r: 128,
@@ -55,6 +56,10 @@ export default {
       },
       mod: ['hex', 'rgb', 'hsl']
     }
+  },
+
+  components: {
+    HexMod
   },
 
   computed: {

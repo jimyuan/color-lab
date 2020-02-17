@@ -10,16 +10,20 @@ const routers = new VueRouter({
     redirect: '/home'
   }, {
     path: '/home',
-    component: () => import('@/pages/Home')
+    name: 'home',
+    component: () => import('@/pages/Home/index')
   }, {
     path: '/convert',
-    component: () => import('@/pages/Convert')
+    name: 'convert',
+    component: () => import('@/pages/Convert/index')
   }, {
     path: '/safety',
-    component: () => import('@/pages/Safety')
+    name: 'safety',
+    component: () => import('@/pages/Safety/index')
   }, {
     path: '/named',
-    component: () => import('@/pages/Named')
+    name: 'named',
+    component: () => import('@/pages/Named/index')
   }]
 })
 

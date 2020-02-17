@@ -1,9 +1,9 @@
 <template>
-  <mt-tabbar v-model="navinfo.path">
-    <mt-tab-item v-for="(val, key) in navList" :key="key" :id="'/'+val" class="nav-bottom">
-      <i slot="icon" class="iconfont" :class="'icon-'+val" @click="goNav(val)"></i>
-      <span v-text="key" @click="goNav(val)"></span>
-    </mt-tab-item>
+  <mt-tabbar class="nav-bar">
+    <router-link :to="{ name: val }" v-for="(val, key) in navList" :key="val">
+      <svg-icon :icon-class="val"></svg-icon>
+      <span v-text="key"></span>
+    </router-link>
   </mt-tabbar>
 </template>
 
@@ -12,6 +12,7 @@ import { mapState } from 'vuex'
 export default {
   data () {
     return {
+      toPath: this.$route.path || '/',
       navList: {
         '首页': 'home',
         '转换': 'convert',
@@ -25,10 +26,16 @@ export default {
     navinfo: state => state.navinfo
   }),
 
+  watch: {
+    'toPath' () {
+      this.goNav(this.toPath)
+    }
+  },
+
   methods: {
     goNav (path) {
       this.$router.push({ path })
-      this.$store.commit('navinfo', { path })
+      this.$store.commit('navinfo', { path: this.toPath })
     }
   }
 }

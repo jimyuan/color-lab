@@ -12,8 +12,16 @@ html {
   height: 100%;
 }
 
+body {
+  font-family: $font-family;
+}
+
 *,
 *::before,
 *::after {
   box-sizing: inherit;
+}
+
+a {
+  text-decoration: none;
 }
