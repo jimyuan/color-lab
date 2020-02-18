@@ -9,10 +9,11 @@ const productionSourceMap = !productionFlag
 const cssSourceMap = !productionFlag
 
 // build 打包生产代码，同时生产 zip 文件
-const zipPackage = true
+const zipPackage = false
 
 // config export
 module.exports = {
+  publicPath: productionFlag ? './' : '/',
   outputDir: 'docs',
   assetsDir: './',
   filenameHashing: false,
