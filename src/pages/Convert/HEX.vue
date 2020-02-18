@@ -1,11 +1,12 @@
 <template>
   <mt-cell title="#">
-    <mt-picker :slots="hexSlots" :visible-item-count="4" @change="onValuesChange"></mt-picker>
+    <mt-picker
+      :slots="hexSlots"
+      :visible-item-count="4"
+      @change="onValuesChange" />
   </mt-cell>
 </template>
 <script>
-import range from 'range-function'
-
 export default {
   name: 'hex',
   props: {
@@ -14,28 +15,16 @@ export default {
     }
   },
   computed: {
+    pre () {
+      return this.value
+    },
     // 生成 HEX 的 picker 数据
     hexSlots () {
-      const r = [...range(0, 9, 'inclusive'), 'A', 'B', 'C', 'D', 'E', 'F']
-      return [{
+      const r = '0123456789ABCDEF'.split('')
+      return Array.from({ length: 6 }, (v, i) => i++).map((v, i) => ({
         values: r,
-        defaultIndex: 10
-      }, {
-        values: r,
-        defaultIndex: 10
-      }, {
-        values: r,
-        defaultIndex: 5
-      }, {
-        values: r,
-        defaultIndex: 5
-      }, {
-        values: r,
-        defaultIndex: 12
-      }, {
-        values: r,
-        defaultIndex: 12
-      }]
+        defaultIndex: r.indexOf(this.pre[i])
+      }))
     }
   },
   methods: {

@@ -1,5 +1,6 @@
 @charset 'utf-8';
 
+// HEX TAB
 .hex-section {
   background: #fff;
   // #号位置
@@ -18,26 +19,38 @@
       margin: 0 !important;
     }
   }
+
+}
+
+.picker-item {
+  color: #ddd;
+  font-family: monospace;
+}
+
+.ranger-zone .mint-cell-title {
+  text-transform: uppercase;
+
 }
 
 .picker-zone {
   background: #ddd;
   margin-top: 1rem;
-
+  
   .mint-cell-value {
     font-family: monospace;
     color: inherit;
   }
-
+  
   .mint-cell-title {
+    text-transform: uppercase;
     font-weight: bold;
     color: inherit;
+    &::after {
+      content: ':'
+    }
   }
 }
-.picker-item {
-  color: #ddd;
-  font-family: monospace;
-}
+
 
 .color-select .mint-cell-value,
 .color-select .mt-range {
@@ -46,26 +59,25 @@
 }
 
 .color-mod {
-  .mint-tab-item-label {
+  .mint-tab-item {
     font-size: 1.2em;
     line-height: 1.2;
   }
 
   .is-selected {
+    font-weight: bold;
     background: #eee;
   }
 }
 
 .result-block {
   $shadow-color: gray;
-  text-align: center;
-  line-height: 5rem;
-  width: 80%;
-  margin: 1em auto 2em;
-  margin-bottom: 0;
+  @include size(80%, 6rem);
+  @include fc;
+  margin: 1em auto 0;
   border-radius: 0.5em;
   border: 10px solid #fff;
-  box-shadow: 0 1px 1px rgba(75,75,75,.2);
+  box-shadow: 0 2px 2px rgba(75,75,75,.2);
   font-family: monospace;
   font-size: 1.5em;
   color: #fff;
