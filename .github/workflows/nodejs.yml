@@ -1,22 +1,22 @@
-name: GitHub Pages deploy
+name: GitHub Actions Build and Deploy
 on:
   push:
     branches:
       - master
 jobs:
-  checkout-and-deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout  # Checkout项目
-      uses: actions/checkout@master
-    - name: Set up Node.js  # Nodejs版本
-      uses: actions/setup-node@master
+    - name: Checkout
+      uses: actions/checkout@v2 # If you're using actions/checkout@v2 you must set persist-credentials to false in most cases for the deployment to work correctly.
       with:
-        node-version: 12.13.0
-    - name: Deploy to GitHub Pages
+        persist-credentials: false
+    - name: Install and Build
+      run: |
+        npm install
+        npm run build
+    - name: Deploy
       uses: jimyuan/color-lab@master
-      env:
-        BUILD_SCRIPT: npm install && npm run build
-        EMAIL: jimyuan@gmail.com          # 你的Github邮箱
-        GH_TOKEN: ${{ secrets.COLORLAB }} # 看下文描述
-        BUILD_DIR: docs/
+      with:
+        ACCESS_TOKEN: ${{ secrets.COLORLAB }}
+        FOLDER: docs
