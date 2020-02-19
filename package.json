@@ -3,9 +3,7 @@
   "version": "2.0.0",
   "description": "RGB, HSL & HEX convert each other, safety color series, named color series",
   "author": "Jim Yuan <aquarior@gmail.com>",
-  "private": true,
   "homepage": "https://jimyuan.github.io/color-lab",
-
   "scripts": {
     "start": "npm run serve",
     "serve": "vue-cli-service serve",
