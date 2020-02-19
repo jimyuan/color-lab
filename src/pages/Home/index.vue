@@ -7,8 +7,8 @@
       <div class="left"></div>
       <div class="top"></div>
       <div class="bottom"></div>
-  </div>
-  <h6 class="center">色彩实验室 ver. 1.0-alpha</h6>
+    </div>
+    <h6 class="center">色彩实验室 ver. 1.0-alpha</h6>
   </div>
 </template>
 
