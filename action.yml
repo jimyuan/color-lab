@@ -1,8 +1,0 @@
-name: 'Deploy to GitHub Pages'
-description: 'This action will handle the deployment process of your project to GitHub Pages.'
-author: 'Jim Yuan <aquarior@gmail.com>'
-runs:
-  using: 'node12'
-branding:
-  icon: 'git-commit'
-  color: 'orange'
