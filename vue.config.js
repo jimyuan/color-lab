@@ -11,6 +11,9 @@ const cssSourceMap = !productionFlag
 // build 打包生产代码，同时生产 zip 文件
 const zipPackage = false
 
+// 开启 prefetch 标识
+const preFetchFlag = false
+
 // config export
 module.exports = {
   publicPath: productionFlag ? './' : '/',
@@ -49,6 +52,8 @@ module.exports = {
         return { symbolId: 'icon-[name]' }
       })
       .end()
+    // 开启 prefetch 标识
+    !preFetchFlag && config.plugins.delete('prefetch')
   },
 
   pluginOptions: {

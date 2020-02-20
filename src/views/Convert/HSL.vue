@@ -4,7 +4,7 @@
       v-for="c of cs" :key="c"
       :title="c"
       :label="value[c].toString()">
-      <mt-range v-model="curValue[c]" :max="c == 'h' ? 359 : 100" :bar-height="2" />
+      <mt-range v-model="curValue[c]" :max="c == 'h' ? 359 : 100" :bar-height="2" :style="{color: curHSL}" />
     </mt-cell>
   </div>
 </template>
@@ -24,6 +24,10 @@ export default {
   computed: {
     curValue () {
       return this.value
+    },
+    curHSL () {
+      const { h, s, l } = this.curValue
+      return `hsl(${h}, ${s}%, ${l}%)`
     }
   }
 }

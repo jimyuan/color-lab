@@ -1,5 +1,10 @@
 @charset "utf-8";
 
+:root {
+  --head-height: 40px;
+  --foot-height: 50px;
+}
+
 html {
   -webkit-tap-highlight-color: transparent;
   -webkit-overflow-scrolling: touch;
@@ -12,14 +17,14 @@ html {
   height: 100%;
 }
 
-body {
-  font-family: $font-family;
-}
-
 *,
 *::before,
 *::after {
   box-sizing: inherit;
+}
+
+body {
+  font-family: $font-family;
 }
 
 a {

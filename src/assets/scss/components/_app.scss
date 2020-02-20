@@ -1,22 +1,32 @@
 @charset 'utf-8';
 
 .child-view {
-  @include absolute(top 40px left 0 right 0 bottom 55px);
+  @include absolute(left 0 right 0);
+  top: var(--head-height);
+  bottom: var(--foot-height);
   overflow: auto;
-  padding-bottom: 2rem;
   transition: transform .3s cubic-bezier(0.2, 0.6, 0.6, 1.5);
 }
 
-.slide-left-enter,
-.slide-right-leave-active {
-  opacity: 0;
-  transform: translate(100%, 0);
+.tab-nav {
+  @include fixed(left 0 right 0);
+  top: var(--head-height);
+  z-index: z('navtab');
+  
+  .mint-tab-item {
+    font-size: 1.2em;
+    line-height: 1.2;
+  }
+
+  .is-selected {
+    font-weight: bold;
+    background: #eee;
+  }
 }
 
-.slide-left-leave-active,
-.slide-right-enter {
-  opacity: 0;
-  transform: translate(-100%, 0);
+.tab-box {
+  padding: 1em;
+  padding-top: calc(2em + var(--head-height));
 }
 
 .fade-enter-active,

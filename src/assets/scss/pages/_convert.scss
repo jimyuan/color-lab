@@ -51,6 +51,11 @@
   }
 }
 
+.color-select {
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0;
+}
 
 .color-select .mint-cell-value,
 .color-select .mt-range {
@@ -58,16 +63,8 @@
   justify-content: flex-end;
 }
 
-.color-mod {
-  .mint-tab-item {
-    font-size: 1.2em;
-    line-height: 1.2;
-  }
-
-  .is-selected {
-    font-weight: bold;
-    background: #eee;
-  }
+.ranger-zone .mt-range-progress {
+  background-color: currentColor;
 }
 
 .result-block {

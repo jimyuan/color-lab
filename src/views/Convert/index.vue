@@ -1,6 +1,6 @@
 <template>
 <div>
-  <mt-navbar v-model="selected" class="color-mod">
+  <mt-navbar v-model="selected" class="tab-nav">
     <!-- tab list -->
     <mt-tab-item
       v-for="m of mod" :key="m"
@@ -8,7 +8,7 @@
       v-text="m.toUpperCase()"/>
   </mt-navbar>
   <!-- tab-container -->
-  <mt-tab-container v-model="selected" class="color-select">
+  <mt-tab-container v-model="selected" class="tab-box color-select">
     <!-- HEX COLOR -->
     <mt-tab-container-item id="hex" class="hex-section">
       <hex-mod v-model="HEX" />
@@ -110,12 +110,6 @@ export default {
           }
         }
       }
-      // if (fromMod === toMod) return
-      // let _c = cvt[fromMod][toMod](color)
-      // const fromMod = this.selected
-      // const color = fromMod === toMod
-      //   ? this.colorParams[fromMod]
-      //   : cvt[fromMod][toMod](this.colorParams[fromMod])
     }
   },
 

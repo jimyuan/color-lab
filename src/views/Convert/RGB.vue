@@ -4,7 +4,7 @@
       v-for="c of cs" :key="c"
       :title="c"
       :label="value[c].toString()">
-      <mt-range v-model="curValue[c]" :max="255" :bar-height="2" />
+      <mt-range v-model="curValue[c]" :max="255" :bar-height="2" :style="{color: curRGB}" />
     </mt-cell>
   </div>
 </template>
@@ -24,6 +24,9 @@ export default {
   computed: {
     curValue () {
       return this.value
+    },
+    curRGB () {
+      return `rgb(${Object.values(this.curValue).toString()})`
     }
   }
 }
