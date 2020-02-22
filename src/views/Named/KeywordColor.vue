@@ -10,19 +10,23 @@
     </aside>
     <div class="color-detail">
       <ul class="unstyled">
-        <li v-text="curColor.keyword"></li>
         <li v-text="curColor.cname"></li>
-        <li data-channel="R">
-          <count-to :startVal="startVal.r" :endVal="curRGB.r" :duration='1000' />
+        <li v-text="curColor.keyword"></li>
+        <li class="hex">#{{curHEX}}</li>
+        <li data-text="R">
+          <count-to :startVal="init.r" :endVal="curRGB.r" :duration='dur' />
           <i :style="{transform: `scaleX(${curRGB.r / 255})`}"></i>
         </li>
-        <li data-channel="G">
-          <count-to :startVal="startVal.g" :endVal="curRGB.g" :duration='1000' />
+        <li data-text="G">
+          <count-to :startVal="init.g" :endVal="curRGB.g" :duration='dur' />
           <i :style="{transform: `scaleX(${curRGB.g / 255})`}"></i>
         </li>
-        <li data-channel="B">
-          <count-to :startVal="startVal.b" :endVal="curRGB.b" :duration='1000' />
+        <li data-text="B">
+          <count-to :startVal="init.b" :endVal="curRGB.b" :duration='dur' />
           <i :style="{transform: `scaleX(${curRGB.b / 255})`}"></i>
+        </li>
+        <li v-if="safety" class="badge">
+          <mt-badge type="primary" size="small">safety color</mt-badge>
         </li>
       </ul>
     </div>
@@ -31,12 +35,14 @@
 
 <script>
 import countTo from 'vue-count-to'
+import cvt from 'color-convert'
 export default {
   name: 'keyword-color',
   components: { countTo },
   data () {
     return {
       selected: 0,
+      safety: false,
       keywordColor: [
         {
           'keyword': 'light pink',
@@ -739,23 +745,30 @@ export default {
           'cname': '纯黑'
         }
       ],
-      startVal: {
+      init: {
         r: 0, g: 0, b: 0
-      }
+      },
+      dur: 1000
     }
   },
   computed: {
     curColor () {
       return this.keywordColor[this.selected]
     },
-    curRGB: {
-      get () {
-        const [r, g, b] = this.curColor.color.split(',').map(v => +v)
-        return { r, g, b }
-      },
-      set (newVal) {
-        this.startVal = newVal
-      }
+    curRGB () {
+      const [r, g, b] = this.curColor.color.split(',').map(v => +v)
+      return { r, g, b }
+    },
+    curHEX () {
+      return cvt['rgb']['hex'](Object.values(this.curRGB))
+    }
+  },
+  watch: {
+    curRGB () {
+      const { r, g, b } = this.curRGB
+      const val = [0, 51, 102, 153, 204, 255]
+      const len = val.length
+      this.safety = [...new Set(val.concat([r, g, b]))].length === len
     }
   },
   methods: {
@@ -763,24 +776,11 @@ export default {
       const index = evt.target.dataset.index
       if (index >= 0) {
         this.selected = index
+        setTimeout(() => {
+          this.init = this.curRGB
+        }, 1000)
       }
     }
-  },
-  filters: {
-    spRGB (val, ch) {
-      const newVal = val.split(',')
-      switch (ch) {
-        case 'r':
-          return newVal[0]
-        case 'g':
-          return newVal[1]
-        case 'b':
-          return newVal[2]
-        default:
-      }
-    }
-  },
-  created () {
   }
 }
 </script>

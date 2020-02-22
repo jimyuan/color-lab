@@ -65,7 +65,6 @@
 
 .color-detail {
   width: 40%;
-  padding-left: 1em 0;
   position: relative;
 
   ul {
@@ -76,24 +75,23 @@
 
   li {
     position: relative;
-    // 英文名称
+    // 中文名称栏
     &:first-child {
+      font-size: 1.2em;
+      text-align: right;
+    }
+    // 英文名称
+    &:nth-child(2) {
       line-height: 3;
       font-size: 12px;
       text-transform: capitalize;
       text-align: right;
     }
-    // 中文名称栏
-    &:nth-child(2) {
-      font-size: 1.2em;
-      padding-bottom: 1em;
-      text-align: right;
-    }
-    &:nth-child(n+3) {
+    &[data-text] {
       // RGB标识字
       &::before {
         @include absolute(right 2.5rem);
-        content: attr(data-channel);
+        content: attr(data-text);
         font-size: 14px;
       }
       // RGB数值区
@@ -118,15 +116,22 @@
         transform-origin: left;
         transition: transform 1s;
       }
-      &[data-channel=R] i {
+      &[data-text=R] i {
         background-color: red;
       }
-      &[data-channel=G] i {
+      &[data-text=G] i {
         background-color: green;
       }
-      &[data-channel=B] i {
+      &[data-text=B] i {
         background-color: blue;
       }
+    }
+    &.hex {
+      text-align: right;
+      font-size: 12px;
+    }
+    &.badge {
+      padding: 1em 0;
     }
   }
 }
