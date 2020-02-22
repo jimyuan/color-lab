@@ -35,7 +35,7 @@ export default {
   },
   data () {
     return {
-      selected: '安全色',
+      selected: '预命名',
       tabs: ['安全色', '预命名', '诗词色']
     }
   },

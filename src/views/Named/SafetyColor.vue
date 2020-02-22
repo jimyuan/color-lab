@@ -1,6 +1,6 @@
 <template>
   <div class="color-216">
-    <article class="safe-item" v-for="color of  HEX216" :key="color" :style="{backgroundColor: '#'+color}" :data-color="color">
+    <article class="color-item" v-for="color of  HEX216" :key="color" :style="{backgroundColor: '#'+color}" :data-color="color">
     </article>
   </div>
 </template>

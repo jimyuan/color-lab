@@ -8,7 +8,7 @@
  
 }
 
-.safe-item {
+.color-item {
   @include size(30%, 70px);
   position: relative;
   text-align: center;
@@ -35,58 +35,98 @@
   }
 }
 
-
+// 预命名色
 .named-color {
-  padding: 10px;
+  display: flex;
+  height: 100%;
+}
+
+.color-bar {
+  width: 60%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
   > div {
-    @include size(40%, 4rem);
+    will-change: transform;
+    width: 20%;
+    padding-top: 20%;
+    border-radius: 50%;
+    transition: transform 1s;
+    margin-bottom: 1em;
+    background: radial-gradient(circle at 30% 30%, #fff 15%, transparent 0);
+
+    &.active {
+      // box-shadow: 2px 2px 5px #111;
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.color-detail {
+  width: 40%;
+  padding-left: 1em 0;
+  position: relative;
+
+  ul {
+    @include fixed(top 100px right 0);
+    padding: 1em;
+    color: #666;
+  }
+
+  li {
     position: relative;
-    box-shadow: 0 0 5px gray;
-
-    &::after, &::before {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      text-align: center;
-      line-height: 4rem;
-      font-size: 0.8rem;
+    // 英文名称
+    &:first-child {
+      line-height: 3;
+      font-size: 12px;
+      text-transform: capitalize;
+      text-align: right;
     }
-
-    &::before {
-      $sc: #ccc;
-
-      line-height: (4rem / 2);
-      white-space: pre;
+    // 中文名称栏
+    &:nth-child(2) {
+      font-size: 1.2em;
+      padding-bottom: 1em;
+      text-align: right;
     }
-
-    &::after {
-      text-align: left;
-      font-family: monospace;
-      transform: translateX(110%);
-      color: gray;
-    }
-  }
-
-  > div + div {
-    margin-top: 1.5rem;
-  }
-
-  $index: 1;
-  @each $eng, $color, $chi in $COLOR-LIST {
-    > div:nth-child(#{$index}) {
-      background: $color;
-      color: text-color($color);
-
-      &::after {
-        content: 'rgb(#{red($color)}, #{green($color)}, #{blue($color)})';
-      }
-
+    &:nth-child(n+3) {
+      // RGB标识字
       &::before {
-        content: $chi '\A #{$color}';
+        @include absolute(right 2.5rem);
+        content: attr(data-channel);
+        font-size: 14px;
+      }
+      // RGB数值区
+      span {
+        @include size(3rem);
+        @include fc;
+        
+        margin-top: 1em;
+        margin-left: auto;
+        justify-content: flex-end;
+        font-size: 18px;
+        font-weight: bold;
+        border-bottom: 2px solid #ccc;
+      }
+      i {
+        @include size(3rem, 2px);
+        @include relative(top -2px);
+
+        will-change: transform;
+        display: block;
+        margin-left: auto;
+        transform-origin: left;
+        transition: transform 1s;
+      }
+      &[data-channel=R] i {
+        background-color: red;
+      }
+      &[data-channel=G] i {
+        background-color: green;
+      }
+      &[data-channel=B] i {
+        background-color: blue;
       }
     }
-    $index: $index + 1;
   }
 }
