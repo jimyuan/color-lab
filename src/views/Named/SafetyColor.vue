@@ -20,13 +20,14 @@ export default {
       return Array.from({ length }, (v, i) => {
         b = i % 6 * step
         v = [r || '00', g || '00', b || '00']
-        if (b === 0xff && g < 0xff) {
+        if (b === 0xff) {
           b = 0
-          g += step
-        }
-        if (b === 0xff && g === 0xff) {
-          g = 0
-          r += step
+          if (g < 0xff) {
+            g += step
+          } else {
+            g = 0
+            r += step
+          }
         }
         return v
           .map(a => a.toString(16))
