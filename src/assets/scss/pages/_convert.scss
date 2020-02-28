@@ -67,6 +67,7 @@
   background-color: currentColor;
 }
 
+// 颜色示意容器
 .result-block {
   $shadow-color: gray;
   @include size(80%, 6rem);
@@ -77,6 +78,6 @@
   box-shadow: 0 2px 2px rgba(75,75,75,.2);
   font-family: monospace;
   font-size: 1.5em;
-  color: #fff;
-  text-shadow: 1px 0 $shadow-color, -1px 0 $shadow-color, 0 1px $shadow-color, 0 -1px $shadow-color;
+  // color: #fff;
+  // text-shadow: 1px 0 $shadow-color, -1px 0 $shadow-color, 0 1px $shadow-color, 0 -1px $shadow-color;
 }

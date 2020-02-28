@@ -7,7 +7,7 @@
         :id="m"
         v-text="m.toUpperCase()"/>
     </mt-navbar>
-    <mt-tab-container v-model="selected" class="tab-box">
+    <mt-tab-container v-model="selected" class="tab-box name-select">
       <!-- 安全色 -->
       <mt-tab-container-item id="安全色">
         <safety-color />
@@ -35,7 +35,7 @@ export default {
   },
   data () {
     return {
-      selected: '预命名',
+      selected: '诗词色',
       tabs: ['安全色', '预命名', '诗词色']
     }
   },
@@ -48,7 +48,7 @@ export default {
         case '预命名':
           return 'CSS预命名关键词'
         case '诗词色':
-          return '古色古香古诗词'
+          return '古色古香诗词色'
         default:
           return '命名色'
       }

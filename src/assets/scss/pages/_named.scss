@@ -1,6 +1,5 @@
 @charset 'utf-8';
 
-
 .color-216 {
   display: flex;
   flex-wrap: wrap;
@@ -28,43 +27,43 @@
     line-height: 1.5;
     border-top: 0.5px solid #ddd;
     font-family: monospace;
-
-    > p {
-      margin: 0;
-    }
   }
 }
 
 // 预命名色
+.name-select {
+  min-height: 100%;
+}
+
 .named-color {
   display: flex;
   height: 100%;
 }
 
 .color-bar {
-  width: 60%;
+  width: 65%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 
   > div {
+    width: 17%;
+    padding-top: 17%;
     will-change: transform;
-    width: 20%;
-    padding-top: 20%;
     border-radius: 50%;
-    transition: transform 1s;
+    transition: transform 1s 0.2s, box-shadow 1s;
     margin-bottom: 1em;
     background: radial-gradient(circle at 30% 30%, #fff 15%, transparent 0);
 
     &.active {
-      // box-shadow: 2px 2px 5px #111;
+      box-shadow: 0 0 0 5px rgba(#666, 0.2);
       transform: rotate(180deg);
     }
   }
 }
 
 .color-detail {
-  width: 40%;
+  width: 35%;
   position: relative;
 
   ul {
@@ -129,10 +128,107 @@
     }
     &.hex {
       text-align: right;
+      text-transform: uppercase;
       font-size: 12px;
     }
     &.badge {
-      padding: 1em 0;
+      padding: 1em 0 0;
+      text-align: right;
     }
+    &.svg-icon {
+      text-align: right;
+      font-size: 4em;
+
+      a {
+        color: #333;
+      }
+    }
+  }
+}
+
+// 诗词色
+.decent-items {
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(100vw - 2rem);
+  height: calc(100vw - 2rem);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  justify-content: space-between;
+
+  > span {
+    @include fc;
+    width: 33%;
+    line-height: 3;
+    padding: 0.5rem;
+    font-size: 22px;
+    background-clip: content-box;
+    border-radius: 50%;
+    border: 0.5rem solid #fff;
+    box-shadow: inset 0 0 0 0.5rem rgba(#ccc, 0.3);
+  }
+}
+
+.decent-list {
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+
+  > article {
+    width: 2.5rem;
+    display: flex;
+    margin-right: 1em;
+    justify-content: space-between;
+    border-top: 0.8rem solid;
+    padding: 0.5rem 2px 2rem;
+
+    > div:first-child {
+      font-size: 12px;
+      text-transform: uppercase;
+      writing-mode: vertical-lr;
+    }
+
+    .rgb {
+      text-align: right;
+    }
+
+    .pie-chart {
+      @include size(1.2rem);
+
+      circle {
+        fill: rgba(#fff, 0.3);
+        stroke: currentcolor;
+      }
+
+      + .pie-chart {
+        margin-top: 0.3rem;
+      }
+    }
+  }
+}
+
+.mini-menu {
+  padding: 1rem 1rem 0;
+  display: flex;
+  justify-content: flex-end;
+
+  span + span {
+    margin-left: 1rem;
+  }
+}
+
+.full-screen {
+  @include absolute(bottom 2rem top 2rem left 0 right 0);
+  padding-top: 1rem;
+
+  h2 {
+    @include absolute(left 0 right 0 top 40%);
+    font-size: 4rem;
+  }
+  h4 {
+    @include absolute(left 0 right 0 bottom 2rem);
+    font-size: 0.8em;
   }
 }

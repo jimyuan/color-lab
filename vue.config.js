@@ -12,7 +12,7 @@ const cssSourceMap = !productionFlag
 const zipPackage = false
 
 // 开启 prefetch 标识
-const preFetchFlag = false
+const preFetchFlag = true
 
 // config export
 module.exports = {

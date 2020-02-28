@@ -1,0 +1,42 @@
+@keyframes pie {
+  to {
+    transform: rotate(0.5turn);
+  }
+}
+
+@keyframes bg {
+  50% {
+    background-image: radial-gradient(circle at left, transparent 35%, currentcolor 0);
+  }
+}
+
+
+.c-pie {
+  @include size(1rem);
+  display: block;
+  position: relative;
+  border-radius: 50%;
+  background-image:
+    radial-gradient(circle, transparent 35%, $pie-bg 0);
+
+  &::before,
+  &::after {
+    @include absolute(top 0 bottom 0 right 0 left 50%);
+
+    content: '';
+    border-radius: 0 100% 100% 0 / 50%;
+  }
+  
+  &::before {
+    background-image: radial-gradient(circle at left, transparent 35%, currentcolor 0);
+  }
+
+  &::after {
+    background-image: radial-gradient(circle at left, transparent 35%, $pie-bg 0);
+    transform-origin: left;
+    animation: pie 50s linear infinite, bg 100s step-end infinite;
+    animation-play-state: paused;
+    animation-delay: inherit;
+    z-index: 1;
+  }
+}

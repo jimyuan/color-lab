@@ -5,7 +5,9 @@
   top: var(--head-height);
   bottom: var(--foot-height);
   overflow: auto;
-  transition: transform .3s cubic-bezier(0.2, 0.6, 0.6, 1.5);
+  will-change: background-color;
+  transition: background-color 0.5s, color 0.5s;
+
 }
 
 .tab-nav {
@@ -25,7 +27,7 @@
 }
 
 .tab-box {
-  padding: 1em;
+  padding: 1rem;
   padding-top: calc(2em + var(--head-height));
 }
 

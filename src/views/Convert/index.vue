@@ -23,7 +23,8 @@
     </mt-tab-container-item>
   </mt-tab-container>
   <!-- 当前颜色块 -->
-  <div class="result-block" :style="{ backgroundColor: colorStr[selected] }">
+  <div class="result-block"
+    :style="{ backgroundColor: colorStr[selected], color: fontColor }">
     {{colorStr[selected]}}
   </div>
   <section class="picker-zone">
@@ -34,6 +35,7 @@
 
 <script>
 import cvt from 'color-convert'
+import fontColor from '@/utils/fontcolor'
 import HexMod from './HEX'
 import RgbMod from './RGB'
 import HslMod from './HSL'
@@ -42,7 +44,7 @@ export default {
   name: 'convert',
   data () {
     return {
-      selected: 'rgb',
+      selected: 'hsl',
       HEX: 'FF0000',
       RGB: {
         r: 255, g: 0, b: 0
@@ -73,6 +75,11 @@ export default {
         'rgb': `rgb(${rgb.toString()})`,
         'hsl': `hsl(${hsl[0]},${hsl[1]}%,${hsl[2]}%)`
       }
+    },
+    fontColor () {
+      const mod = this.selected
+      const params = this.colorParams[mod]
+      return fontColor(mod, params)
     }
   },
   watch: {

@@ -33,6 +33,14 @@ const routes = [{
     text: '命名',
     icon: 'named'
   }
+}, {
+  path: '/decent-detail/:color',
+  name: 'decent-detail',
+  props: true,
+  component: () => import('@/views/Named/DecentDetail')
+}, {
+  path: '/decent-detail',
+  redirect: { name: 'named' }
 }]
 
 export { routes }
