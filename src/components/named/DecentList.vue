@@ -26,23 +26,22 @@ export default {
     }
   },
   components: { PieChart },
-  data () {
-    return {
-      curIdx: 0
-    }
-  },
   computed: {
     hexArr () {
       return this.data.map(v => `#${cvt.rgb.hex(v.rgb.split(','))}`)
     },
     rgbPercent () {
       return this.data.map(v => v.rgb.split(',').map(n => Math.floor(+n / 255 * 100)))
+    },
+    curIdx () {
+      return this.$store.state.curDecent
     }
   },
   methods: {
-    changeBg (idx = 0) {
-      this.curIdx = idx
+    changeBg (idx = this.curIdx) {
+      if (!this.hexArr[idx]) idx = 0
       this.$emit('input', this.hexArr[idx])
+      this.$store.commit('handleDecent', idx)
     }
   },
   created () {

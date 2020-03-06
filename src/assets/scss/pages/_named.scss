@@ -1,5 +1,6 @@
 @charset 'utf-8';
 
+// 安全色
 .color-216 {
   display: flex;
   flex-wrap: wrap;
@@ -25,7 +26,6 @@
     padding: 3px 5px;
     font-size: 8px;
     line-height: 1.5;
-    border-top: 0.5px solid #ddd;
     font-family: monospace;
   }
 }
@@ -37,7 +37,6 @@
 
 .named-color {
   display: flex;
-  height: 100%;
 }
 
 .color-bar {
@@ -47,13 +46,13 @@
   justify-content: space-between;
 
   > div {
+    will-change: transform;
     width: 17%;
     padding-top: 17%;
-    will-change: transform;
     border-radius: 50%;
-    transition: transform 1s 0.2s, box-shadow 1s;
     margin-bottom: 1em;
     background: radial-gradient(circle at 30% 30%, #fff 15%, transparent 0);
+    transition: transform 1s 0.2s, box-shadow 1s;
 
     &.active {
       box-shadow: 0 0 0 5px rgba(#666, 0.2);
@@ -146,7 +145,7 @@
   }
 }
 
-// 诗词色
+// 诗词色 - 容器
 .decent-items {
   display: flex;
   flex-wrap: wrap;
@@ -156,13 +155,16 @@
   top: 50%;
   transform: translateY(-50%);
   justify-content: space-between;
-
+  // 项目
   > span {
     @include fc;
+    
+    font-family: poemfonts;
     width: 33%;
-    line-height: 3;
     padding: 0.5rem;
-    font-size: 22px;
+    font-size: 2.5rem;
+    background: url(../img/cloud-2.png) center / 90%;
+    background-blend-mode: soft-light;
     background-clip: content-box;
     border-radius: 50%;
     border: 0.5rem solid #fff;
@@ -198,7 +200,6 @@
       @include size(1.2rem);
 
       circle {
-        fill: rgba(#fff, 0.3);
         stroke: currentcolor;
       }
 
@@ -224,11 +225,99 @@
   padding-top: 1rem;
 
   h2 {
-    @include absolute(left 0 right 0 top 40%);
-    font-size: 4rem;
+    @include absolute(left 0 right 0 top 30%);
+    font-family: poemfonts;
+    font-size: 5rem;
   }
   h4 {
     @include absolute(left 0 right 0 bottom 2rem);
+    line-height: 1.5;
     font-size: 0.8em;
+    font-weight: 400;
+  }
+}
+
+// 传统色
+.tridition-items {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.tridition-key {
+  font-family: triditionfonts;
+  text-align: center;
+  width: 45%;
+  line-height: 2.5;
+  font-size: 30px;
+  background:
+    url(../img/cloud.png) center / auto 90%,
+    radial-gradient(circle at top left, #fff 0.25em, transparent 0),
+    radial-gradient(circle at top right, #fff 0.25em, transparent 0),
+    radial-gradient(circle at bottom left, #fff 0.25em, transparent 0),
+    radial-gradient(circle at bottom right, #fff 0.25em, transparent 0),
+    linear-gradient(#fff, #fff) center 5% / 85% 1px,
+    linear-gradient(#fff, #fff) center 95% / 85% 1px,
+    linear-gradient(#fff, #fff) 2% center / 1px 55%,
+    linear-gradient(#fff, #fff) 98% center / 1px 55%;
+  background-repeat: no-repeat;
+  background-blend-mode: soft-light;
+
+  &:nth-child(n+3) {
+    margin-top: 1rem;
+  }
+}
+
+.tridition-list {
+  @include absolute(top 0 left 0 right 0 bottom 0);
+
+  will-change: background-color;
+  z-index: z('content');
+  overflow: scroll;
+  transition: background-color 0.5s;
+
+  .unstyled {
+    // 列表容器
+    padding: 1rem;
+    font-size: 16px;
+    // 拼音容器
+    rt {
+      text-align: left;
+    }
+    // 颜色列表
+    > li {
+      margin-bottom: 1rem;
+      padding: 1.5rem 0 0 2rem;
+      position: relative;
+      // 0.5px 分割线
+      &::after {
+        @include absolute(left 0 right 0 top 0);
+
+        content: '';
+        height: 1px;
+        background-color: currentcolor;
+        transform: scaleY(0.5)
+      }
+      // 列表修饰
+      i {
+        @include size(1.2rem);
+        @include absolute(left 0 top 50%);
+
+        will-change: transform, border-radius, background-color;
+        display:  block;
+        border-radius: 0.3rem;
+        transition-property: transform, border-radius, background-color;
+        transition-duration: 0.5s;
+        transition-delay: 0, 0.3s, 0.3s;
+      }
+      // 选中状态
+      &.selected {
+        i {
+          border-radius: 50%;
+          transform: rotate(-90deg);
+          background-color: currentcolor !important;
+        }
+      }
+    }
   }
 }

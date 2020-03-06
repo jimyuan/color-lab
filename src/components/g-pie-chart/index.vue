@@ -1,6 +1,7 @@
 <template>
   <svg viewBox="0 0 32 32" class="pie">
-    <circle r="16" cx="16" cy="16" :style="pieStyle" />
+    <circle cx="16" cy="16" r="16"></circle>
+    <circle cx="16" cy="16" r="16" :style="pieStyle"></circle>
   </svg>
 </template>
 
@@ -22,7 +23,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
   svg.pie {
     width: 1rem;
     height: 1rem;
@@ -30,9 +31,13 @@ export default {
     border-radius: 50%;
   }
 
-  .pie circle {
-    fill: #655;
-    stroke: yellowgreen;
-    stroke-width: 32;
+  .pie > circle {
+    fill: none;
+    stroke-width: 15;
+    stroke: rgb(29, 161, 242);
+
+    &:first-child {
+      opacity: 0.2;
+    }
   }
 </style>

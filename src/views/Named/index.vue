@@ -16,6 +16,10 @@
       <mt-tab-container-item id="预命名">
         <keyword-color />
       </mt-tab-container-item>
+      <!-- 传统色 -->
+      <mt-tab-container-item id="传统色">
+        <tridition-color />
+      </mt-tab-container-item>
       <!-- 诗词色 -->
       <mt-tab-container-item id="诗词色">
         <decent-color />
@@ -27,16 +31,17 @@
 <script>
 import KeywordColor from './KeywordColor'
 import SafetyColor from './SafetyColor'
+import TriditionColor from './TriditionColor'
 import DecentColor from './DecentColor'
 export default {
   name: 'named-color',
   components: {
-    KeywordColor, SafetyColor, DecentColor
+    KeywordColor, SafetyColor, TriditionColor, DecentColor
   },
   data () {
     return {
-      selected: '诗词色',
-      tabs: ['安全色', '预命名', '诗词色']
+      selected: this.$route.query.selected || '安全色',
+      tabs: ['安全色', '预命名', '传统色', '诗词色']
     }
   },
   computed: {
@@ -47,6 +52,8 @@ export default {
           return '216 WEB安全色'
         case '预命名':
           return 'CSS预命名关键词'
+        case '传统色':
+          return '中国传统命名色'
         case '诗词色':
           return '古色古香诗词色'
         default:

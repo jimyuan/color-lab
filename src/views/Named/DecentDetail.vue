@@ -1,7 +1,7 @@
 <template>
   <div :style="{backgroundColor, ...setFontColor}">
     <div class="mini-menu">
-      <span @click="fullscreen=!fullscreen">
+      <span @click="toggleList">
         <svg-icon icon-class="list" v-if="fullscreen"></svg-icon>
         <svg-icon icon-class="fullscreen" v-else></svg-icon>
       </span>
@@ -47,8 +47,11 @@ export default {
       const title = `中国传统颜色：${this.color}(${this.colorArr.length})`
       this.$store.commit('navinfo', { title })
     },
+    toggleList () {
+      this.fullscreen = !this.fullscreen
+    },
     backIndex () {
-      this.$router.push({ name: 'named' })
+      this.$router.push({ name: 'named', query: { selected: '诗词色' } })
     }
   },
   created () {

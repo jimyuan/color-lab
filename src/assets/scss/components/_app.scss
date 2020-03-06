@@ -9,23 +9,31 @@
   transition: background-color 0.5s, color 0.5s;
 
 }
+// tab bar 重定义
+.mint-navbar.tab-nav {
+  @include absolute(left 0 right 0);
+  // top: var(--head-height);
+  z-index: z('tab-nav');
 
-.tab-nav {
-  @include fixed(left 0 right 0);
-  top: var(--head-height);
-  z-index: z('navtab');
-  
-  .mint-tab-item {
-    font-size: 1.2em;
-    line-height: 1.2;
-  }
+  > a {
+    will-change: border-bottom;
+    transition: border-bottom 0.5s;
+    border-bottom: 3px solid transparent;
+    font-size: 14px;
 
-  .is-selected {
-    font-weight: bold;
-    background: #eee;
+    + a {
+      background: linear-gradient(#eee, #eee) no-repeat left / 1px 50%;
+    }
+    
+    &.is-selected {
+      font-weight: bold;
+      margin-bottom: 0;
+      border-bottom-color: currentcolor;
+    }
+
   }
 }
-
+// tab container 再定义
 .tab-box {
   padding: 1rem;
   padding-top: calc(2em + var(--head-height));

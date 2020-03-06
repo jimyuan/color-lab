@@ -1,14 +1,14 @@
 <template>
   <section class="named-color">
-    <aside class="color-bar" @click="selectColor($event)">
+    <div class="color-bar" @click="selectColor($event)">
       <div
         v-for="(m, i) in keywordColor"
         :key="m.keyword"
         :data-index="i"
         :class="{active: selected==i}"
         :style="{backgroundColor: `#${m.color}`}"></div>
-    </aside>
-    <div class="color-detail">
+    </div>
+    <aside class="color-detail">
       <ul class="unstyled">
         <li v-text="curColor.cname"></li>
         <li v-text="curColor.keyword"></li>
@@ -37,7 +37,7 @@
           </a>
         </li>
       </ul>
-    </div>
+    </aside>
   </section>
 </template>
 

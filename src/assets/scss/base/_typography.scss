@@ -9,3 +9,21 @@
 .center {
   text-align: center;
 }
+
+// 诗词色特定字体
+@font-face {
+  font-family: 'poemfonts';
+  src: url('//cdn.repository.webfont.com/webfonts/nomal/136092/46953/5e5b6644f629d813e4e9ba42.gif?r=131441861782');
+  src: url('//cdn.repository.webfont.com/webfonts/nomal/136092/46953/5e5b6644f629d813e4e9ba42.gif?r=131441861782?#iefix') format('embedded-opentype'), url('//cdn.repository.webfont.com/webfonts/nomal/136092/46953/5e5b6644f629d813e4e9ba42.png?r=131441861782') format('woff2'), url('//cdn.repository.webfont.com/webfonts/nomal/136092/46953/5e5b6644f629d813e4e9ba42.bmp?r=131441861782') format('woff'), url('//cdn.repository.webfont.com/webfonts/nomal/136092/46953/5e5b6644f629d813e4e9ba42.jpg?r=131441861782') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+// 传统色特定字体
+@font-face {
+  font-family: 'triditionfonts';
+  src: url('//cdn.repository.webfont.com/webfonts/nomal/136092/46953/5e5b707cf629d80100a106fc.gif?r=131444476329');
+  src: url('//cdn.repository.webfont.com/webfonts/nomal/136092/46953/5e5b707cf629d80100a106fc.gif?r=131444476329?#iefix') format('embedded-opentype'), url('//cdn.repository.webfont.com/webfonts/nomal/136092/46953/5e5b707cf629d80100a106fc.png?r=131444476329') format('woff2'), url('//cdn.repository.webfont.com/webfonts/nomal/136092/46953/5e5b707cf629d80100a106fc.bmp?r=131444476329') format('woff'), url('//cdn.repository.webfont.com/webfonts/nomal/136092/46953/5e5b707cf629d80100a106fc.jpg?r=131444476329') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
