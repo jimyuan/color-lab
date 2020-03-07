@@ -39,15 +39,6 @@
   padding-top: calc(2em + var(--head-height));
 }
 
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity .5s ease;
-}
-.fade-enter,
-.fade-leave-active {
-  opacity: 0
-}
-
 .unstyled {
   margin: 0;
   padding: 0;

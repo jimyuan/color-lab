@@ -280,43 +280,135 @@
     // 列表容器
     padding: 1rem;
     font-size: 16px;
-    // 拼音容器
-    rt {
-      text-align: left;
+    
+  }
+
+  ruby > span {
+    letter-spacing: 10px;
+  }
+  // 拼音容器
+  rt {
+    text-align: justify;
+    text-transform: capitalize;
+  }
+
+  // 颜色列表
+  li {
+    margin-bottom: 1rem;
+    padding: 1rem 0 0 2rem;
+    position: relative;
+
+    // 0.5px 分割线
+    &::after {
+      @include absolute(left 0 right 0 top 0);
+
+      content: '';
+      height: 1px;
+      background-color: currentcolor;
+      transform: scaleY(0.5)
     }
-    // 颜色列表
-    > li {
-      margin-bottom: 1rem;
-      padding: 1.5rem 0 0 2rem;
-      position: relative;
-      // 0.5px 分割线
-      &::after {
-        @include absolute(left 0 right 0 top 0);
 
-        content: '';
-        height: 1px;
-        background-color: currentcolor;
-        transform: scaleY(0.5)
-      }
-      // 列表修饰
+    // 列表修饰
+    i {
+      @include size(1.2rem);
+      @include absolute(left 0 top 1.5em);
+
+      will-change: transform, border-radius;
+      display: block;
+      border-radius: 0.3rem;
+      transition-property: transform, border-radius;
+      transition-duration: 0.5s;
+      transition-delay: 0.2s;
+    }
+
+    // 选中状态
+    &.selected {
       i {
-        @include size(1.2rem);
-        @include absolute(left 0 top 50%);
-
-        will-change: transform, border-radius, background-color;
-        display:  block;
-        border-radius: 0.3rem;
-        transition-property: transform, border-radius, background-color;
-        transition-duration: 0.5s;
-        transition-delay: 0, 0.3s, 0.3s;
+        border-radius: 50%;
+        transform: rotate(-180deg);
+        background-image: radial-gradient(circle, transparent 30%, currentcolor 0);
       }
-      // 选中状态
-      &.selected {
-        i {
-          border-radius: 50%;
-          transform: rotate(-90deg);
-          background-color: currentcolor !important;
+
+      ruby {
+        > span {
+          font-family: triditionfonts;
+          font-size: 38px;
+          line-height: 1;
         }
+
+        > rp,
+        > rt {
+          display: none;
+        }
+      }
+    }
+    // 
+    .color-info > span {
+      @include absolute(right 0 top 1.5em);
+
+      text-transform: uppercase;
+      font-family: 'Source Code Pro', $font-family-monospace;
+    }
+
+    article {
+      display: flex;
+      background-image: radial-gradient(circle at 90% 50%, transparent 3%, rgba(#fff, 0.8) 0);
+      margin: 1rem 0 1.5rem -2rem;
+      // margin-left: -2rem;
+      border-radius: 1rem 25% 25% 1rem / 1rem 100% 100% 1rem;
+      padding: 1rem 1rem 0.5rem;
+      box-shadow: 0.5rem 0.5rem rgba(#ccc, 0.7);
+  
+      span {
+        @include size(3.5rem);
+        @include fc;
+
+        position: relative;
+        margin-right: 0.3rem;
+
+        &::before {
+          @include absolute(left 0 top 0);
+
+          content: attr(data-key);
+          line-height: 0;
+          color: #aaa;
+          text-transform: uppercase;
+          font-size: 14px;
+          font-family: $font-family-monospace;
+        }
+
+        &::after {
+          @include absolute(left 0 top 0 bottom 0 right 0);
+          @include fc;
+
+          content: attr(data-val);
+        }
+      }
+    }
+
+    .cmyk-c {
+      color: #0093d3;
+    }
+
+    .cmyk-m {
+      color: #cc006b;
+    }
+
+    .cmyk-y {
+      color: #fbb612;
+    }
+
+    .cmyk-k {
+      color: #333;
+    }
+
+    // CMYK 图
+    .pie {
+      @include size(3rem);
+
+      > circle {
+        stroke-width: 8;
+        stroke: currentColor;
       }
     }
   }

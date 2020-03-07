@@ -1,0 +1,1 @@
+svg.pie{width:1rem;height:1rem;transform:rotate(-90deg);border-radius:50%}.pie>circle{fill:none;stroke-width:15;stroke:#1da1f2;transition:stroke-dasharray .5s}.pie>circle:first-child{opacity:.2}.pie>circle:last-child{stroke-dasharray:0 100}

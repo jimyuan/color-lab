@@ -16,9 +16,16 @@ export default {
   data () {
     return {
       pieStyle: {
-        strokeDasharray: `${this.percent} 100`
+        strokeDasharray: '0, 100'
       }
     }
+  },
+  created () {
+    setTimeout(() => {
+      this.pieStyle = {
+        strokeDasharray: `${this.percent} 100`
+      }
+    }, 500)
   }
 }
 </script>
@@ -35,9 +42,14 @@ export default {
     fill: none;
     stroke-width: 15;
     stroke: rgb(29, 161, 242);
+    transition: stroke-dasharray 0.5s;
 
     &:first-child {
       opacity: 0.2;
+    }
+
+    &:last-child {
+      stroke-dasharray: 0 100;
     }
   }
 </style>
