@@ -9,7 +9,8 @@
 }
 
 .color-item {
-  @include size(30%, 70px);
+  @include size(15%);
+  padding-top: 15%;
   position: relative;
   text-align: center;
   text-transform: uppercase;
@@ -21,11 +22,10 @@
     @include absolute(left 0 right 0 bottom 0);
 
     content: '#'attr(data-color);
-    height: 3em;
     background: #fff;
-    padding: 3px 5px;
+    padding: 0 5px;
     font-size: 8px;
-    line-height: 1.5;
+    line-height: 2em;
     font-family: monospace;
   }
 }
@@ -242,6 +242,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+
+  > p {
+    margin: 2em 0 0;
+    font-size: 10px;
+    text-decoration: underline;
+  }
 }
 
 .tridition-key {

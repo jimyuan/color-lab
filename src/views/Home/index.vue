@@ -8,18 +8,12 @@
       <div class="top"></div>
       <div class="bottom"></div>
     </div>
-    <h6 class="center">色彩实验室 ver. 1.0-alpha</h6>
+    <h6 class="center">色彩实验室 ver. 2.0</h6>
   </div>
 </template>
 
 <script>
 export default {
-  data () {
-    return {
-      msg: 'HOME PAGE'
-    }
-  },
-
   created () {
     this.$store.commit('navinfo', { title: '色彩实验室' })
   }

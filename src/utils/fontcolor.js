@@ -8,6 +8,8 @@ export default function (mod, params) {
   const [h, s, l] = mod === 'hsl' ? params : cvt[mod]['hsl'](params)
   if (l > 70) {
     return dark
+  } else if (l < 30) {
+    return light
   } else if (l + s < 80) {
     return light
   } else if (h < 50 || h > 180) {

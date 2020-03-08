@@ -6,7 +6,7 @@
   bottom: var(--foot-height);
   overflow: auto;
   will-change: background-color;
-  transition: background-color 0.5s, color 0.5s;
+  transition: background-color 0.5s, color 0.5s, opacity 0.5s ease;
 
 }
 // tab bar 重定义

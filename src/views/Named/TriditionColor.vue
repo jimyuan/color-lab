@@ -5,6 +5,9 @@
       class="tridition-key"
       :style="coverStyle[k]"
       @click="handleList(k)">{{k}}</h2>
+    <p class="center">
+      <a href="http://zhongguose.com/" target="new">参看: 色谱 中科院科技情报编委会名词室.科学出版社,1957.</a>
+    </p>
     <!-- 列表区，默认隐藏 -->
     <div class="tridition-list" v-if="listFlag" :style="curStyle">
       <div class="mini-menu">
