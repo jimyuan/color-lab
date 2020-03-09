@@ -68,8 +68,28 @@
   }
 }
 
+/**
+ * flex 绝对居中
+ *
+ */
 @mixin fc {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/**
+ * 移动端 0.5px 细线
+ * $argu取值： top left right bottom， 默认 top
+ */
+@mixin thin-line($argu: top) {
+  @each $o in $argu {
+    @if $o == top or $o == bottom {
+      background: linear-gradient(#d9d9d9 50%, transparent 0) $o / 100% 1px;
+    }
+    @if $o == left or $o == right {
+      background: linear-gradient(to right, #d9d9d9 50%, transparent 0) $o / 1px 100%;
+    }
+  }
+  background-repeat: no-repeat;
 }

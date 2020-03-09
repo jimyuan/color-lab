@@ -1,18 +1,15 @@
 @charset 'utf-8';
 
 .child-view {
-  @include absolute(left 0 right 0);
-  top: var(--head-height);
-  bottom: var(--foot-height);
-  overflow: auto;
-  will-change: background-color;
-  transition: background-color 0.5s, color 0.5s, opacity 0.5s ease;
+  @include absolute(left 0 right 0 top 0 bottom 0);
 
+  will-change: background-color;
+  overflow: auto;
+  transition: background-color 0.5s, color 0.5s, opacity 0.5s ease;
 }
 // tab bar 重定义
 .mint-navbar.tab-nav {
   @include absolute(left 0 right 0);
-  // top: var(--head-height);
   z-index: z('tab-nav');
 
   > a {

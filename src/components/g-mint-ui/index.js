@@ -1,7 +1,6 @@
 import Vue from 'vue'
-import { Header, Cell, Navbar, TabContainer, TabContainerItem, TabItem, Range, Tabbar, Picker, Badge, Swipe, SwipeItem } from 'mint-ui'
+import { Cell, Navbar, TabContainer, TabContainerItem, TabItem, Range, Tabbar, Picker, Badge, Swipe, SwipeItem } from 'mint-ui'
 
-Vue.component(Header.name, Header)
 Vue.component(Cell.name, Cell)
 Vue.component(Navbar.name, Navbar)
 Vue.component(TabItem.name, TabItem)

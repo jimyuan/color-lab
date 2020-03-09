@@ -1,10 +1,10 @@
 <template>
-  <mt-tabbar class="nav-bar">
+  <nav>
     <router-link :to="{ name: val.name }" v-for="val of navList" :key="val.name">
       <svg-icon :icon-class="val.meta.icon"></svg-icon>
       <span v-text="val.meta.text"></span>
     </router-link>
-  </mt-tabbar>
+  </nav>
 </template>
 
 <script>

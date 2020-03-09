@@ -1,32 +1,27 @@
 <template>
   <div class="ranger-zone">
     <mt-cell
-      v-for="c of cs" :key="c"
+      v-for="(c, idx) of $route.name" :key="c"
       :title="c"
-      :label="value[c].toString()">
-      <mt-range v-model="curValue[c]" :max="255" :bar-height="2" :style="{color: curRGB}" />
+      :label="rgb[idx].toString()">
+      <mt-range v-model="rgb[idx]" :max="255" :bar-height="2" :style="{color: curRGB}" />
     </mt-cell>
   </div>
 </template>
 <script>
 export default {
   name: 'rgb',
-  props: {
-    value: {
-      type: Object
-    }
-  },
-  data () {
-    return {
-      cs: 'rgb'
-    }
-  },
   computed: {
-    curValue () {
-      return this.value
+    rgb () {
+      return this.$store.state.convert.rgb
     },
     curRGB () {
-      return `rgb(${Object.values(this.curValue).toString()})`
+      return this.$store.getters.RGB
+    }
+  },
+  watch: {
+    rgb () {
+      this.$store.commit('updateColor', { space: 'rgb', data: this.rgb })
     }
   }
 }

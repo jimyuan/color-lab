@@ -1,0 +1,9 @@
+main > header {
+  @include fc;
+
+  background-color: rgb(36, 160, 255);
+  height: var(--head-height);
+  color: hsl(0, 0%, 100%);
+  font-size: 14px;
+  padding: 0 10px;
+}

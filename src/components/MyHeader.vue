@@ -1,5 +1,5 @@
 <template>
-  <mt-header :title="title"></mt-header>
+  <header>{{title}}</header>
 </template>
 
 <script>

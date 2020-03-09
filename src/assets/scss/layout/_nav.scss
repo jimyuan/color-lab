@@ -1,20 +1,25 @@
 @charset 'utf-8';
 
-.nav-bar {
+main > nav {
+  @include thin-line;
+
   height: var(--foot-height);
+  display: flex;
+  text-align: center;
 
   > a {
     @include fc;
+
     flex-grow: 1;
+    flex-direction: column;
     color: #666;
     font-size: 1.6em;
-    flex-direction: column;
 
     &.router-link-active {
       color: hsl(206, 100%, 57%);
     }
   }
-
+  // 文字
   span {
     font-size: 0.5em;
     line-height: 1.2;

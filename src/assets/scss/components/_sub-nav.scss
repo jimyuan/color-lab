@@ -1,0 +1,24 @@
+.sub-nav {
+  display: flex;
+  margin-bottom: 1rem;
+
+  > a {
+    flex-grow: 1;
+    color: #000;
+    font-size: 14px;
+    line-height: 50px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 3px solid transparent;
+
+    &.router-link-exact-active {
+      color: #26a2ff;
+      border-color: currentColor;
+    }
+
+    + a {
+      @include thin-line(left);
+      background-size: 1px 50%;
+    }
+  }
+}

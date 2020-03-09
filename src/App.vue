@@ -1,9 +1,11 @@
 <template>
   <main>
     <my-header></my-header>
-    <transition name="fade">
-      <router-view class="child-view"></router-view>
-    </transition>
+    <section>
+      <transition name="fade">
+        <router-view class="child-view"></router-view>
+      </transition>
+    </section>
     <navbar></navbar>
   </main>
 </template>

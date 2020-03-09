@@ -10,7 +10,7 @@
 
 .color-item {
   @include size(15%);
-  padding-top: 15%;
+  padding-top: 12%;
   position: relative;
   text-align: center;
   text-transform: uppercase;
@@ -22,7 +22,7 @@
     @include absolute(left 0 right 0 bottom 0);
 
     content: '#'attr(data-color);
-    background: #fff;
+    background: rgba(#fff, 0.7);
     padding: 0 5px;
     font-size: 8px;
     line-height: 2em;
@@ -303,15 +303,11 @@
     margin-bottom: 1rem;
     padding: 1rem 0 0 2rem;
     position: relative;
-
+    
     // 0.5px 分割线
+    @include thin-line;
     &::after {
-      @include absolute(left 0 right 0 top 0);
-
-      content: '';
-      height: 1px;
       background-color: currentcolor;
-      transform: scaleY(0.5)
     }
 
     // 列表修饰
@@ -340,6 +336,7 @@
           font-family: triditionfonts;
           font-size: 38px;
           line-height: 1;
+          letter-spacing: normal;
         }
 
         > rp,

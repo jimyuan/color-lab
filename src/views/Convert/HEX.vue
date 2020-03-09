@@ -1,35 +1,33 @@
 <template>
-  <mt-cell title="#">
-    <mt-picker
-      :slots="hexSlots"
-      :visible-item-count="4"
-      @change="onValuesChange" />
-  </mt-cell>
+  <mt-picker
+    class="hex-section"
+    :slots="hexSlots"
+    :visible-item-count="4"
+    @change="onColorChange" />
 </template>
 <script>
 export default {
   name: 'hex',
-  props: {
-    value: {
-      type: String
-    }
-  },
   computed: {
-    pre () {
-      return this.value
+    // 默认 HEX 值
+    hex () {
+      return this.$store.state.convert.hex
     },
     // 生成 HEX 的 picker 数据
     hexSlots () {
       const r = '0123456789ABCDEF'.split('')
-      return Array.from({ length: 6 }, (v, i) => i++).map((v, i) => ({
-        values: r,
-        defaultIndex: r.indexOf(this.pre[i])
-      }))
+      return Array.from({ length: 6 }, (v, i) => i++)
+        .map((v, i) => {
+          return {
+            values: r,
+            defaultIndex: r.indexOf(this.hex[i])
+          }
+        })
     }
   },
   methods: {
-    onValuesChange (picker, values) {
-      this.$emit('input', values.join(''))
+    onColorChange (picker, values) {
+      this.$store.commit('updateColor', { space: 'hex', data: values.join('') })
     }
   }
 }

@@ -9,7 +9,6 @@ import svgIcon from '@/components/g-svg-icon'
 import '@/components/g-mint-ui'
 import '@/filters'
 
-// Vue.use(MintUI)
 Vue.component('svg-icon', svgIcon)
 Vue.config.productionTip = false
 
