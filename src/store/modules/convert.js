@@ -10,11 +10,7 @@ export default {
   mutations: {
     'updateColor' (state, { space, data }) {
       for (let m of ['hex', 'rgb', 'hsl']) {
-        if (m === space) {
-          state[space] = data
-        } else {
-          state[m] = cvt[space][m](data)
-        }
+        state[m] = m === space ? data : cvt[space][m](data)
       }
     }
   }
