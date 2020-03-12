@@ -51,12 +51,12 @@ export default {
       this.fullscreen = !this.fullscreen
     },
     backIndex () {
-      this.$router.push({ name: 'named', query: { selected: '诗词色' } })
+      this.$router.push({ name: 'poetry' })
     }
   },
   created () {
     if (!Array.isArray(this.colorArr)) {
-      this.$router.push({ name: 'named' })
+      this.$router.push({ name: 'poetry' })
     }
     this.setTitle()
   }

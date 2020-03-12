@@ -20,7 +20,8 @@ import TriditionCharts from '@/components/named/TriditionCharts'
 export default {
   props: {
     data: {
-      type: Array
+      type: Array,
+      default () { return [] }
     }
   },
   components: { TriditionItem, TriditionCharts },

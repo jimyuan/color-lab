@@ -1,0 +1,93 @@
+// 诗词色 - 容器
+.decent-items {
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(100vw - 2rem);
+  height: calc(100vw - 2rem);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  justify-content: space-between;
+
+  // 项目
+  >span {
+    @include fc;
+
+    font-family: poemfonts;
+    width: 33%;
+    padding: 0.5rem;
+    font-size: 2.5rem;
+    background: url(../img/cloud-2.png) center / 90%;
+    background-blend-mode: soft-light;
+    background-clip: content-box;
+    border-radius: 50%;
+    border: 0.5rem solid #fff;
+    box-shadow: inset 0 0 0 0.5rem rgba(#ccc, 0.3);
+  }
+}
+
+.decent-list {
+  padding: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+
+  >article {
+    width: 2.5rem;
+    display: flex;
+    margin-right: 1em;
+    justify-content: space-between;
+    border-top: 0.8rem solid;
+    padding: 0.5rem 2px 2rem;
+
+    >div:first-child {
+      font-size: 12px;
+      text-transform: uppercase;
+      writing-mode: vertical-lr;
+    }
+
+    .rgb {
+      text-align: right;
+    }
+
+    .pie-chart {
+      @include size(1.2rem);
+
+      circle {
+        stroke: currentcolor;
+      }
+
+      +.pie-chart {
+        margin-top: 0.3rem;
+      }
+    }
+  }
+}
+
+.mini-menu {
+  padding: 1rem 1rem 0;
+  display: flex;
+  justify-content: flex-end;
+
+  span+span {
+    margin-left: 1rem;
+  }
+}
+
+.full-screen {
+  @include absolute(bottom 2rem top 2rem left 0 right 0);
+  padding-top: 1rem;
+
+  h2 {
+    @include absolute(left 0 right 0 top 30%);
+    font-family: poemfonts;
+    font-size: 5rem;
+  }
+
+  h4 {
+    @include absolute(left 0 right 0 bottom 2rem);
+    line-height: 1.5;
+    font-size: 0.8em;
+    font-weight: 400;
+  }
+}

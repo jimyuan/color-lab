@@ -24,3 +24,13 @@
   opacity: 0;
   transform: scaleX(0);
 }
+
+// 荡漾
+@keyframes swing {
+  from {
+    box-shadow: 0 0 0 5px rgba(#666, 0.2);
+  }
+  to {
+    box-shadow: 0 0 0 20px transparent;
+  }
+}

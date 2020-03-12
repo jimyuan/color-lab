@@ -1,0 +1,123 @@
+// 预命名色
+.keyword-color {
+  display: flex;
+}
+
+.color-bar {
+  width: 65%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  > div {
+    will-change: transform;
+    width: 17%;
+    padding-top: 17%;
+    border-radius: 50%;
+    margin-bottom: 1em;
+    background: currentcolor radial-gradient(circle at 30% 30%, #fff 15%, transparent 0);
+    transition: transform 1s linear;
+
+    &.active {
+      transform: rotate(180deg);
+      animation: swing 1s 0.5s infinite;
+    }
+  }
+}
+
+.color-params {
+  width: 35%;
+  position: relative;
+
+  ul {
+    @include fixed(top 100px right 0);
+    padding: 1em;
+    color: #666;
+  }
+
+  li {
+    position: relative;
+
+    // 中文名称栏
+    &:first-child {
+      font-size: 1.2em;
+      text-align: right;
+    }
+
+    // 英文名称
+    &:nth-child(2) {
+      line-height: 3;
+      font-size: 12px;
+      text-transform: capitalize;
+      text-align: right;
+    }
+
+    &[data-text] {
+
+      // RGB标识字
+      &::before {
+        @include absolute(right 2.5rem);
+
+        content: attr(data-text);
+        font-size: 14px;
+      }
+
+      // RGB数值区
+      span {
+        @include size(3rem);
+        @include fc;
+
+        margin-top: 1em;
+        margin-left: auto;
+        justify-content: flex-end;
+        font-size: 18px;
+        font-weight: bold;
+        font-family: $font-family-monospace;
+        border-bottom: 2px solid #ccc;
+      }
+
+      i {
+        @include size(3rem, 2px);
+        @include relative(top -2px);
+
+        will-change: transform;
+        display: block;
+        margin-left: auto;
+        transform-origin: left;
+        transition: transform 1s;
+      }
+
+      &[data-text=R] i {
+        background-color: red;
+      }
+
+      &[data-text=G] i {
+        background-color: green;
+      }
+
+      &[data-text=B] i {
+        background-color: blue;
+      }
+    }
+
+    &.hex {
+      text-align: right;
+      text-transform: uppercase;
+      font-size: 12px;
+    }
+
+    &.badge {
+      padding: 1em 0 0;
+      text-align: right;
+    }
+
+    &.svg-icon {
+      text-align: right;
+      font-size: 4em;
+
+      a {
+        color: #333;
+      }
+    }
+  }
+}

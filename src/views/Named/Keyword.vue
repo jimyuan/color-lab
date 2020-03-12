@@ -1,14 +1,14 @@
 <template>
-  <section class="named-color">
-    <div class="color-bar" @click="selectColor($event)">
+  <section class="keyword-color">
+    <!-- 预命名列表区 -->
+    <div class="color-bar" @click="selectColor">
       <div
-        v-for="(m, i) in keywordColor"
-        :key="m.keyword"
+        v-for="(m, i) in keywordColor" :key="m.keyword"
         :data-index="i"
         :class="{active: selected==i}"
-        :style="{backgroundColor: `#${m.color}`}"></div>
+        :style="{color: `#${m.color}`}"></div>
     </div>
-    <aside class="color-detail">
+    <aside class="color-params">
       <ul class="unstyled">
         <li v-text="curColor.cname"></li>
         <li v-text="curColor.keyword"></li>

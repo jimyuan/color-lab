@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import convert from './convert'
+import named from './named'
 
 Vue.use(VueRouter)
 
@@ -9,45 +11,14 @@ const routes = [{
 }, {
   path: '/home',
   name: 'home',
-  component: () => import('@/views/Home/index'),
+  component: () => import('@/views/Home'),
   meta: {
     navi: true,
     text: '首页',
     icon: 'home'
   }
-}, {
-  path: '/convert',
-  name: 'convert',
-  component: () => import('@/views/Convert/index'),
-  redirect: { name: 'hsl' },
-  meta: {
-    navi: true,
-    text: '转换',
-    icon: 'convert'
-  },
-  children: [{
-    name: 'hex',
-    path: 'hex',
-    component: () => import('@/views/Convert/HEX')
-  }, {
-    name: 'rgb',
-    path: 'rgb',
-    component: () => import('@/views/Convert/RGB')
-  }, {
-    name: 'hsl',
-    path: 'hsl',
-    component: () => import('@/views/Convert/HSL')
-  }]
-}, {
-  path: '/named',
-  name: 'named',
-  component: () => import('@/views/Named/index'),
-  meta: {
-    navi: true,
-    text: '命名',
-    icon: 'named'
-  }
-}, {
+},
+convert, named, {
   path: '/decent-detail/:color',
   name: 'decent-detail',
   props: true,
@@ -59,4 +30,9 @@ const routes = [{
 
 export { routes }
 
-export default new VueRouter({ routes })
+export default new VueRouter({
+  scrollBehavior (to, from, savedPosition) {
+    return { x: 0, y: 0 }
+  },
+  routes
+})

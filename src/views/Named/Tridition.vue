@@ -1,5 +1,6 @@
 <template>
   <section class="tridition-items">
+    <!-- 传统色大类 -->
     <h2
       v-for="(v, k) in colorGroup" :key="k"
       class="tridition-key"
@@ -9,14 +10,16 @@
       <a href="http://zhongguose.com/" target="new">参看: 色谱 中科院科技情报编委会名词室.科学出版社,1957.</a>
     </p>
     <!-- 列表区，默认隐藏 -->
-    <div class="tridition-list" v-if="listFlag" :style="curStyle">
-      <div class="mini-menu">
-        <span @click="listFlag=false">
-          <svg-icon icon-class="close"></svg-icon>
-        </span>
+    <transition name="fade">
+      <div class="tridition-list" v-if="listFlag" :style="curStyle">
+        <div class="mini-menu">
+          <span @click="listFlag=false">
+            <svg-icon icon-class="close"></svg-icon>
+          </span>
+        </div>
+        <tridition-list :data="curColorArr" v-model="curStyle" />
       </div>
-      <tridition-list :data="curColorArr" v-model="curStyle" />
-    </div>
+    </transition>
   </section>
 </template>
 <script>

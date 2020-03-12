@@ -1,72 +1,40 @@
 <template>
   <div>
-    <mt-navbar v-model="selected" class="tab-nav">
-      <!-- tab list -->
-      <mt-tab-item
-        v-for="m of tabs" :key="m"
-        :id="m"
-        v-text="m.toUpperCase()"/>
-    </mt-navbar>
-    <mt-tab-container v-model="selected" class="tab-box name-select">
-      <!-- 安全色 -->
-      <mt-tab-container-item id="安全色">
-        <safety-color />
-      </mt-tab-container-item>
-      <!-- 预命名 -->
-      <mt-tab-container-item id="预命名">
-        <keyword-color />
-      </mt-tab-container-item>
-      <!-- 传统色 -->
-      <mt-tab-container-item id="传统色">
-        <tridition-color />
-      </mt-tab-container-item>
-      <!-- 诗词色 -->
-      <mt-tab-container-item id="诗词色">
-        <decent-color />
-      </mt-tab-container-item>
-    </mt-tab-container>
+    <sub-nav class="named">
+      <router-link
+        v-for="m of subNav" :key="m.name"
+        :to="{name: m.name}">
+        {{m.text}}</router-link>
+    </sub-nav>
+    <transition name="fade" mode="out-in">
+      <router-view class="tab-box" />
+    </transition>
   </div>
 </template>
 
 <script>
-import KeywordColor from './KeywordColor'
-import SafetyColor from './SafetyColor'
-import TriditionColor from './TriditionColor'
-import DecentColor from './DecentColor'
+import router from '@/routers/named'
+import SubNav from '@/components/SubNav'
+
 export default {
   name: 'named-color',
-  components: {
-    KeywordColor, SafetyColor, TriditionColor, DecentColor
-  },
-  data () {
-    return {
-      selected: this.$route.query.selected || '安全色',
-      tabs: ['安全色', '预命名', '传统色', '诗词色']
-    }
-  },
+  components: { SubNav },
   computed: {
-    title () {
-      const val = this.selected
-      switch (val) {
-        case '安全色':
-          return '216 WEB安全色'
-        case '预命名':
-          return 'CSS预命名关键词'
-        case '传统色':
-          return '中国传统命名色'
-        case '诗词色':
-          return '古色古香诗词色'
-        default:
-          return '命名色'
-      }
+    subNav () {
+      return router.children.map(v => {
+        return {
+          name: v.name,
+          text: v.meta.text
+        }
+      })
     }
   },
   watch: {
-    'title': 'changeTitle'
+    '$route': 'changeTitle'
   },
   methods: {
     changeTitle () {
-      const title = this.title
+      const title = this.$route.meta.title
       this.$store.commit('navinfo', { title })
     }
   },

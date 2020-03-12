@@ -1,0 +1,29 @@
+// 安全色
+.color-216 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  
+  > article {
+    @include size(15%);
+  
+    position: relative;
+    padding-top: 12%;
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 0 5px #ccc;
+  
+    &::after {
+      @include absolute(left 0 right 0 bottom 0);
+  
+      content: '#'attr(data-color);
+      background: rgba(#fff, 0.7);
+      padding: 0 5px;
+      font-size: 8px;
+      line-height: 2em;
+      font-family: $font-family-monospace;
+    }
+  }
+}
