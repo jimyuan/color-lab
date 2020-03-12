@@ -18,15 +18,7 @@ const routes = [{
     icon: 'home'
   }
 },
-convert, named, {
-  path: '/decent-detail/:color',
-  name: 'decent-detail',
-  props: true,
-  component: () => import('@/views/Named/DecentDetail')
-}, {
-  path: '/decent-detail',
-  redirect: { name: 'named' }
-}]
+convert, named]
 
 export { routes }
 

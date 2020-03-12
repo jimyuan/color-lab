@@ -12,11 +12,13 @@
     <!-- 列表区，默认隐藏 -->
     <transition name="fade">
       <div class="tridition-list" v-if="listFlag" :style="curStyle">
+        <!-- 关闭弹层区域 -->
         <div class="mini-menu">
           <span @click="listFlag=false">
             <svg-icon icon-class="close"></svg-icon>
           </span>
         </div>
+        <!-- 颜色列表 -->
         <tridition-list :data="curColorArr" v-model="curStyle" />
       </div>
     </transition>
@@ -76,7 +78,6 @@ export default {
   },
   methods: {
     handleList (key) {
-      // const curColorArr = this.colorGroup[key]
       this.curColorArr = this.colorGroup[key]
       this.listFlag = true
     }

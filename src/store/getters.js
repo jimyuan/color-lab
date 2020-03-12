@@ -4,5 +4,6 @@ export default {
   HSL: state => {
     const [h, s, l] = state.convert.hsl
     return `hsl(${h}, ${s}%, ${l}%)`
-  }
+  },
+  curPoetry: state => state.named.curPoetry
 }

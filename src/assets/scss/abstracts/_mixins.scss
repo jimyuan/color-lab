@@ -78,6 +78,10 @@
   align-items: center;
 }
 
+@mixin abs-max {
+  @include absolute(top 0 left 0 right 0 bottom 0);
+}
+
 /**
  * 移动端 0.5px 细线
  * $argu取值： top left right bottom， 默认 top

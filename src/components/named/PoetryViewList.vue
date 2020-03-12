@@ -1,5 +1,5 @@
 <template>
-  <section class="decent-list">
+  <section class="poetry-list">
       <article
         v-for="(item, index) in data" :key="item.name"
         :style="{borderColor: hexArr[index]}"
@@ -18,7 +18,7 @@ import PieChart from '@/components/g-pie-chart'
 import cvt from 'color-convert'
 
 export default {
-  name: 'decent-list',
+  name: 'poetry-list',
   props: {
     data: {
       type: Array,
@@ -34,14 +34,14 @@ export default {
       return this.data.map(v => v.rgb.split(',').map(n => Math.floor(+n / 255 * 100)))
     },
     curIdx () {
-      return this.$store.state.curDecent
+      return this.$store.getters.curPoetry
     }
   },
   methods: {
     changeBg (idx = this.curIdx) {
       if (!this.hexArr[idx]) idx = 0
       this.$emit('input', this.hexArr[idx])
-      this.$store.commit('handleDecent', idx)
+      this.$store.commit('handlePoetry', idx)
     }
   },
   created () {

@@ -2,11 +2,11 @@
   <div class="full-screen">
     <mt-swipe :auto="0" :showIndicators="false" :defaultIndex="curIdx" @change="handleChange">
       <mt-swipe-item
-        v-for="color of data" :key="color.name">
+        v-for="(color, idx) of data" :key="color.name">
         <h2 class="center">{{color.name}}</h2>
         <h4 class="center">
           {{color.quote}}<br>
-          ({{hexArr[curIdx]}})
+          ({{hexArr[idx]}})
         </h4>
       </mt-swipe-item>
     </mt-swipe>
@@ -19,7 +19,7 @@
 import cvt from 'color-convert'
 
 export default {
-  name: 'full-screen',
+  name: 'peotry-fullscreen',
   props: {
     data: {
       type: Array,
@@ -34,14 +34,18 @@ export default {
       return this.data.map(v => v.rgb.split(',').map(n => Math.floor(+n / 255 * 100)))
     },
     curIdx () {
-      return this.$store.state.curDecent
+      return this.$store.getters.curPoetry
     }
   },
   methods: {
-    handleChange (index) {
-      this.$store.commit('handleDecent', index)
-      this.$emit('input', this.hexArr[index])
+    handleChange (idx = this.curIdx) {
+      if (!this.hexArr[idx]) idx = 0
+      this.$store.commit('handlePoetry', idx)
+      this.$emit('input', this.hexArr[idx])
     }
+  },
+  created () {
+    this.handleChange()
   }
 }
 </script>
