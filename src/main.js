@@ -1,5 +1,4 @@
 import 'normalize.css'
-import 'mint-ui/lib/style.css'
 import '@/assets/scss/docs.scss'
 import Vue from 'vue'
 import App from './App'

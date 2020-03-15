@@ -19,7 +19,7 @@
     width: 33%;
     padding: 0.5rem;
     font-size: 2.5rem;
-    background: url(../img/cloud-2.png) center / 90%;
+    background: url(../img/cloud-2.jpg) center / 90%;
     background-blend-mode: soft-light;
     background-clip: content-box;
     border-radius: 50%;
@@ -87,6 +87,13 @@
   @include absolute(bottom 2rem top 2rem left 0 right 0);
   padding-top: 1rem;
 
+  .color-hex {
+    @include absolute(top 0 left 2em);
+
+    content: attr(data-hex);
+    font-size: 14px;
+  }
+
   h2 {
     @include absolute(left 0 right 0 top 30%);
     font-family: poemfonts;
@@ -95,8 +102,20 @@
 
   h4 {
     @include absolute(left 0 right 0 bottom 2rem);
-    line-height: 1.5;
+    line-height: 2.5;
     font-size: 0.8em;
     font-weight: 400;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .color-quote {
+    display: inline;
+    font-size: 1.2em;
+    font-weight: bold;
+    padding-bottom: 1em;
+    background: no-repeat linear-gradient(currentcolor, currentcolor);
   }
 }
